@@ -13,42 +13,48 @@ def seed_products():
             "description": fake.sentence(),
             "price": 44.00,
             "quantity": 10,
-            "category_id": 1
+            "category_id": 1,
+            "user_id": 1
         },
         {
             "name": "Rocking chair",
             "description": fake.sentence(),
             "price": 140.00,
             "quantity": 5,
-            "category_id": 2
+            "category_id": 2,
+             "user_id": 2
         },
         {
             "name": "Corgi painting",
             "description": fake.sentence(),
             "price": 499.99,
             "quantity": 3,
-            "category_id": 3
+            "category_id": 3,
+            "user_id": 3
         },
         {
             "name": "Harry Potter lego set",
             "description": fake.sentence(),
             "price": 149.99,
             "quantity": 23,
-            "category_id": 4
+            "category_id": 4,
+            "user_id": 1
         },
         {
             "name": "Witch Bloom",
             "description": fake.sentence(),
             "price": 29.99,
             "quantity": 10,
-            "category_id": 4
+            "category_id": 4,
+            "user_id": 2
         },
         {
             "name": "Crystal necklace",
             "description": fake.sentence(),
             "price": 79.99,
             "quantity": 12,
-            "category_id": 5
+            "category_id": 5,
+            "user_id": 3
         }
     ]
 
@@ -65,7 +71,7 @@ def seed_products():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_categories():
+def undo_products():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
     else:
