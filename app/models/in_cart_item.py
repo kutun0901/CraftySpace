@@ -1,4 +1,4 @@
-from db import db, SCHEMA, add_prefix_for_prod, environment
+from .db import db, SCHEMA, add_prefix_for_prod, environment
 
 
 class InCartItem(db.Model):
@@ -13,4 +13,4 @@ class InCartItem(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
 
     user = db.relationship("User", back_populates="in_cart_items")
-    product = db.relationship("Product", back_populates="in_cart_items_product")
+    product = db.relationship("Product", back_populates="in_cart_items")

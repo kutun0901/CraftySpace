@@ -1,4 +1,4 @@
-from db import db, add_prefix_for_prod, SCHEMA, environment
+from .db import db, add_prefix_for_prod, SCHEMA, environment
 
 class Category(db.Model):
     __tablename__ = "categories"

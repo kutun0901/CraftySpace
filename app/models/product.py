@@ -1,4 +1,4 @@
-from db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import date
 
 class Product(db.Model):
@@ -16,22 +16,22 @@ class Product(db.Model):
     image_url = db.Column(db.String, nullable=False)
     created_at = db.Column(db.Date, nullable=False, default=date.today())
     updated_at = db.Column(db.Date, nullable=False, default=date.today())
-    category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("category.id")), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("categories.id")), nullable=False)
 
     user = db.relationship("User", back_populates="products")
     in_cart_items = db.relationship("InCartItem", back_populates="product")
-    orders = db.relationship("Order", back_populates="products")
+    orders = db.relationship("Order", back_populates="product")
     reviews = db.relationship("Review", back_populates="product")
     category = db.relationship("Category", back_populates="products")
 
-def to_dict(self):
-    return {
-        "id": self.id,
-        "name": self.name,
-        "description": self.description,
-        "price": self.price,
-        "quantity": self.quantity,
-        "imageUrl": self.image_url,
-        "createdAt": self.created_at,
-        "updatedAt": self.updated_at
-    }
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "price": self.price,
+            "quantity": self.quantity,
+            "imageUrl": self.image_url,
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at
+        }
