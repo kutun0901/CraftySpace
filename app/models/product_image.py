@@ -11,3 +11,10 @@ class ProductImage(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
 
     product = db.relationship("Product", back_populates="images")
+
+
+    def to_dict(self):
+        return {
+            "imageUrl": self.image_url,
+            "productId": self.product_id
+        }
