@@ -28,7 +28,7 @@ class Product(db.Model):
     def get_avg_rating(self):
         if len(self.reviews):
             sumRating = sum(review.rating for review in self.reviews)
-            avgRating = sumRating / len(self.review)
+            avgRating = sumRating / len(self.reviews)
             return avgRating
         else:
             return 0
@@ -36,7 +36,6 @@ class Product(db.Model):
 
     def to_dict(self):
         return {
-            "id": self.id,
             "name": self.name,
             "description": self.description,
             "price": self.price,
@@ -44,7 +43,6 @@ class Product(db.Model):
             "quantity": self.quantity,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
-            "category": self.category,
             "avgRating": self.get_avg_rating(),
             "image": [image.to_dict() for image in self.images],
             "reviews": [review.to_dict() for review in self.reviews]
