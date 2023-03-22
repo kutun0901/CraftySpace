@@ -23,7 +23,16 @@ class Product(db.Model):
     orders = db.relationship("Order", back_populates="product")
     reviews = db.relationship("Review", back_populates="product")
     category = db.relationship("Category", back_populates="products")
-    images = db.relationship('ProductImage', back_populates="product")
+    images = db.relationship('ProductImage', back_populates="product", cascade="all, delete-orphan")
+
+    def get_avg_rating(self):
+        if len(self.reviews):
+            sumRating = sum(review.rating for review in self.reviews)
+            avgRating = sumRating / len(self.reviews)
+            return avgRating
+        else:
+            return 0
+
 
     def to_dict(self):
         return {
@@ -31,7 +40,13 @@ class Product(db.Model):
             "name": self.name,
             "description": self.description,
             "price": self.price,
+            "user_id": self.user_id,
+            "seller": self.user.to_dict(),
             "quantity": self.quantity,
+            "categoryId": self.category_id,
             "createdAt": self.created_at,
-            "updatedAt": self.updated_at
+            "updatedAt": self.updated_at,
+            "avgRating": self.get_avg_rating(),
+            "images": [image.image_url for image in self.images],
+            "reviews": [review.to_dict() for review in self.reviews]
         }

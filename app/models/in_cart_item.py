@@ -14,3 +14,11 @@ class InCartItem(db.Model):
 
     user = db.relationship("User", back_populates="in_cart_items")
     product = db.relationship("Product", back_populates="in_cart_items")
+
+
+    def to_dict(self):
+        return {
+            "user": self.user.to_dict(),
+            "product": self.product.to_dict(),
+            "quantity": self.quantity
+        }

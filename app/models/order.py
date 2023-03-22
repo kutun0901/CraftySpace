@@ -17,3 +17,12 @@ class Order(db.Model):
 
     user = db.relationship("User", back_populates="orders")
     product = db.relationship("Product", back_populates="orders")
+
+
+    def to_dict(self):
+        return {
+            "user": self.user.to_dict(),
+            "product": self.product.to_dict(),
+            "quantity": self.quantity,
+            "purchasedDated": self.purchased_date
+        }

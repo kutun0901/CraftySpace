@@ -8,6 +8,12 @@ class ProductImage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     image_url = db.Column(db.String, nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id'), ondelete='CASCADE'), nullable=False)
 
     product = db.relationship("Product", back_populates="images")
+
+
+    def to_dict(self):
+        return {
+            "imageUrl": self.image_url,
+        }
