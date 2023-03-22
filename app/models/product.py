@@ -12,6 +12,7 @@ class Product(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     price = db.Column(db.Float, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.Date, nullable=False, default=date.today())
     updated_at = db.Column(db.Date, nullable=False, default=date.today())
@@ -22,7 +23,7 @@ class Product(db.Model):
     orders = db.relationship("Order", back_populates="product")
     reviews = db.relationship("Review", back_populates="product")
     category = db.relationship("Category", back_populates="products")
-    images = db.relationship('Image', back_populates="product")
+    images = db.relationship('ProductImage', back_populates="product")
 
     def to_dict(self):
         return {
@@ -31,7 +32,6 @@ class Product(db.Model):
             "description": self.description,
             "price": self.price,
             "quantity": self.quantity,
-            "imageUrl": self.image_url,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at
         }
