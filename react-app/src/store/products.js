@@ -133,6 +133,23 @@ export const deleteProductThunk = productId => async (dispatch) => {
     }
 }
 
+export const getUserProductsThunk = () => async (dispatch) => {
+    const res = await fetch('/api/products/current')
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getUserProducts(data));
+        return data;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors
+        }
+    } else {
+        return ["An Error occurred. Please try again later."]
+    }
+}
+
 
 //reducer
 
@@ -156,6 +173,7 @@ export default function reducer(state = initialState, action) {
         }
         case GET_USER_PRODUCTS: {
             const products = {}
+            console.log(action.payload);
             for (const product of action.payload) {
                 products[product.id] = product
             }

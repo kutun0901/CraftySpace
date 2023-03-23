@@ -40,10 +40,10 @@ function LandingPage() {
                 {productsArr.map((product) => (
                     <div key={product.id} className="product">
                         <NavLink to={`/products/${product.id}`}>
-                        <img src={product.images[0]} alt={product.title} />
-                        <h3>{product.name}</h3>
-                        <p>{product.price}</p>
-                        <p>{product.description}</p>
+                            <img src={product.images[0]} alt={product.title} />
+                            <h3>{product.name}</h3>
+                            <p>{product.price}</p>
+                            <p>{product.description}</p>
                         </NavLink>
                     </div>
                 ))}
