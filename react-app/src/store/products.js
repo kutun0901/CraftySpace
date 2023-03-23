@@ -57,8 +57,8 @@ export const getAllProductsThunk = () => async (dispatch) => {
     }
 }
 
-export const getSingleProductThunk = (id) => async (dispatch) => {
-    const res = await fetch (`/api/products/${id}`)
+export const getSingleProductThunk = (productId) => async (dispatch) => {
+    const res = await fetch (`/api/products/${productId}`)
 
     if (res.ok) {
         const data = await res.json();
@@ -169,6 +169,7 @@ export default function reducer(state = initialState, action) {
             return {...state, allProducts: products}
         }
         case GET_SINGLE_PRODUCT: {
+            console.log(action.payload);
             return {...state, singleProduct: action.payload}
         }
         case GET_USER_PRODUCTS: {
