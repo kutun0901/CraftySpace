@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Product, db, ProductImage
 from app.forms.product_form import ProductForm
@@ -13,7 +13,7 @@ def get_all_products():
     get all products
     """
     products = Product.query.all()
-    return {"product": [product.to_dict() for product in products]}
+    return [product.to_dict() for product in products]
 
 @product_routes.route('/<int:id>')
 def get_single_product(id):

@@ -1,4 +1,3 @@
-import { RESET } from "./session"
 
 const GET_ALL_PRODUCTS = 'products/GET_ALL_PRODUCTS'
 const GET_SINGLE_PRODUCT = 'products/GET_SINGLE_PRODUCT'
@@ -122,7 +121,7 @@ export const deleteProductThunk = productId => async (dispatch) => {
     })
 
     if (res.ok) {
-        dispatch(deleteProduct(expenseId));
+        dispatch(deleteProduct(productId));
         return null;
     } else if (res.status < 500) {
         const data = await res.json();
@@ -184,9 +183,7 @@ export default function reducer(state = initialState, action) {
             delete newState.userProducts[action.payload]
             return newState
         }
-        case RESET: {
-            return initialState;
-        }
+
         default:
             return state
     }
