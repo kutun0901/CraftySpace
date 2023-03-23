@@ -12,7 +12,7 @@ function UpdateProduct() {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const categories = useSelector((state) => state.categories);
-    const product = useSelector((state) => state.products.userProducts[id])
+    const product = useSelector((state) => state.products.userProducts["id"])
 
     console.log(product);
 
