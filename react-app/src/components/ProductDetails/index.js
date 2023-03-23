@@ -7,8 +7,6 @@ import { getSingleProductThunk } from "../../store/products";
 function ProductDetails () {
 
     const { id } = useParams();
-    console.log('id:', id);
-    console.log('useParams:', useParams());
     const dispatch = useDispatch();
     const product = useSelector(state => state.products.singleProduct);
 

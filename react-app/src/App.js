@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import UserListing from "./components/UserListing";
 import ProductDetails from "./components/ProductDetails";
+import NewProduct from "./components/ProductDetails/NewProduct";
+import UpdateProduct from "./components/ProductDetails/UpdateProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,11 +32,17 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/products/:id">
-            <ProductDetails />
+          <Route path="/products/current/new">
+            <NewProduct />
           </Route>
           <Route path="/products/current">
             <UserListing />
+          </Route>
+          <Route path="/products/:id/edit">
+            <UpdateProduct />
+          </Route>
+          <Route path="/products/:id">
+            <ProductDetails />
           </Route>
         </Switch>
       )}

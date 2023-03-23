@@ -174,7 +174,6 @@ export default function reducer(state = initialState, action) {
         }
         case GET_USER_PRODUCTS: {
             const products = {}
-            console.log(action.payload);
             for (const product of action.payload) {
                 products[product.id] = product
             }
