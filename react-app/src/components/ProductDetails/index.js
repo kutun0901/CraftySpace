@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getSingleProductThunk } from "../../store/products";
-
+import AddToCart from "../ShoppingCart/AddToCart";
 
 function ProductDetails () {
 
@@ -10,13 +10,12 @@ function ProductDetails () {
     const dispatch = useDispatch();
     const product = useSelector(state => state.products.singleProduct);
 
-
     useEffect(() => {
         dispatch(getSingleProductThunk(id));
     }, [dispatch, id]);
 
     if (!product) {
-        return <p>Loading...</p>;
+        return null;
     }
 
     return (
@@ -31,6 +30,7 @@ function ProductDetails () {
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p>Price: {product.price}</p>
+                <AddToCart item={product} />
             </div>
         </div>
     );

@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getAllCategoriesThunk } from "../../store/categories";
-import { updateProductThunk } from "../../store/products";
+import { getSingleProductThunk, getUserProductsThunk, updateProductThunk } from "../../store/products";
 
 function UpdateProduct() {
 
     const { id } = useParams()
-    console.log(id);
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const categories = useSelector((state) => state.categories);
-    const product = useSelector((state) => state.products.userProducts["id"])
+    const product = useSelector((state) => state.products.userProducts[id])
 
     console.log(product);
 
@@ -20,33 +19,37 @@ function UpdateProduct() {
 
     const categoriesArr = Object.values(categories);
 
-    const [name, setName] = useState(product ? product.name : "");
-    const [images, setImages] = useState(product ? product.images : []);
-    const [description, setDescription] = useState(product ? product.description : "");
-    const [quantity, setQuantity] = useState(product ? product.quantity : 0);
-    const [price, setPrice] = useState(product ? product.price : 0);
-    const [category, setCategory] = useState(product ? product.category : "");
+    const [name, setName] = useState(product?.name);
+    const [images, setImages] = useState(product?.images);
+    const [description, setDescription] = useState(product?.description);
+    const [quantity, setQuantity] = useState(product?.quantity);
+    const [price, setPrice] = useState(product?.price);
+    const [category, setCategory] = useState(product?.category);
     const [errors, setErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
-    useEffect(() => {
-        let e = {};
-        if (!name.length > 0) e.emptyName = "Name is required";
-        if (!images.length > 0) e.emptyImages = "At least one image is required";
-        if (!description.length > 0)
-            e.emptyDescription = "Description is required";
-        if (!quantity.length > 0 || quantity < 1) e.emptyQuantity = "Quantity is required";
-        if (!price.length > 0 || price < 1) e.emptyPrice = "Price is required and must be greater than 0";
-        if (!category.length > 0) e.emptyCategory = "Category is required";
-        setErrors(e);
-    }, [name, description, quantity, price, category, images]);
 
 
     useEffect(() => {
         if (sessionUser) {
             dispatch(getAllCategoriesThunk());
+            dispatch(getUserProductsThunk());
+            dispatch(getSingleProductThunk(id));
         }
-    }, [dispatch, sessionUser]);
+    }, [dispatch, sessionUser, id]);
+
+    useEffect(() => {
+        let e = {};
+        if (!(name ?? '').length > 0) e.emptyName = "Name is required";
+        if (!(images ?? []).length > 0) e.emptyImages = "At least one image is required";
+        if (!(description ?? '').length > 0)
+            e.emptyDescription = "Description is required";
+        if (!(quantity ?? '').length > 0 || quantity < 1) e.emptyQuantity = "Quantity is required";
+        if (!(price ?? '').length > 0 || price < 1) e.emptyPrice = "Price is required and must be greater than 0";
+        if (!(category ?? '').length > 0) e.emptyCategory = "Category is required";
+        setErrors(e);
+    }, [name, description, quantity, price, category, images]);
+
+
 
     if (!sessionUser) return null;
 
@@ -58,7 +61,7 @@ function UpdateProduct() {
         if (images) newImages.push(images)
 
 
-        const updatedProduct = {
+        const product = {
             name,
             description,
             category_id: category,
@@ -68,9 +71,11 @@ function UpdateProduct() {
         };
 
         if (Object.values(errors).length === 0) {
-            const data = await dispatch(updateProductThunk(updatedProduct));
+            const data = await dispatch(updateProductThunk(id, product));
+            console.log(product.id);
+
             if (data) {
-                history.push(`/products/${data.id}`);
+                history.push(`/products/${product.id}`);
             }
         }
     };

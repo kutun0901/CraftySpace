@@ -1,4 +1,3 @@
-
 const GET_ALL_CART_ITEMS = 'products/GET_ALL_CART_ITEMS'
 const ADD_ITEM_TO_CART = 'products/ADD_ITEM_TO_CART'
 const UPDATE_CART = 'products/UPDATE_CART'
@@ -18,10 +17,13 @@ export const addItemToCart = item => ({
 })
 
 
-export const updateCart = item => ({
-    type: UPDATE_CART,
-    payload: item
-})
+export const updateCart = (id, quantity) => {
+    if (quantity < 1 || !quantity) return removeItem(id);
+    return {
+      type: UPDATE_CART,
+      payload: { id, quantity }
+    };
+  };
 
 export const removeItem = itemId => ({
     type: REMOVE_ITEM,
@@ -35,7 +37,7 @@ export const reset = () => ({
 
 //thunks
 export const getAllCartItemsThunk = () => async (dispatch) => {
-    const res = await fetch('/api/incart/')
+    const res = await fetch('/api/incart/current')
 
     if (res.ok) {
         const data = await res.json();
@@ -52,8 +54,8 @@ export const getAllCartItemsThunk = () => async (dispatch) => {
 }
 
 
-export const addItemToCartThunk = item => async (dispatch) => {
-    const res = await fetch('/api/incart/', {
+export const addItemToCartThunk = (item) => async (dispatch) => {
+    const res = await fetch(`/api/incart/current`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(item)
@@ -63,44 +65,41 @@ export const addItemToCartThunk = item => async (dispatch) => {
         const data = await res.json();
         dispatch(addItemToCart(data));
         return data
-    } else if (res.status < 500) {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
     } else {
-        return ["An Error occurred. Please try again later."]
+        const text = await res.text();
+        return ["An Error occurred. Please try again later.", text];
     }
 }
 
-export const updateCartThunk = item => async (dispatch) => {
-    const res = await fetch(`/api/products/${item.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product)
-    })
+export const updateCartThunk = (item) => async (dispatch) => {
+    const { id, quantity } = item;
+    const res = await fetch(`/api/incart/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantity })
+    });
     if (res.ok) {
-        const data = await res.json();
-        dispatch(updateCart(data));
-        return null;
+      const data = await res.json();
+      dispatch(updateCart(id, quantity));
+      return data;
     } else if (res.status < 500) {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
+      const data = await res.json();
+      if (data.errors) {
+        return data.errors;
+      }
     } else {
-        return ["An Error occurred. Please try again later."]
+      return ["An Error occurred. Please try again later."];
     }
-}
+  };
 
 export const removeItemThunk = itemId => async (dispatch) => {
-    const res = await fetch(`/api/products/${itemId}`, {
+    const res = await fetch(`/api/incart/${itemId}`, {
         method: "DELETE"
     })
 
     if (res.ok) {
         dispatch(removeItem(itemId));
-        return null;
+        // return null;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -133,7 +132,7 @@ export default function reducer(state = initialState, action) {
           }
         case UPDATE_CART: {
             const newState = { ...state }
-            newState.cart[action.payload.id].quantity = action.payload.quantity
+            newState[action.payload.id].quantity = action.payload.quantity
             return newState
         }
         case REMOVE_ITEM: {

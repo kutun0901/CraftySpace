@@ -7,14 +7,14 @@ from .auth_routes import validation_errors_to_error_messages
 shopping_cart_routes = Blueprint("shoppingCart", __name__)
 
 
-@shopping_cart_routes.route('/')
+@shopping_cart_routes.route('/current')
 @login_required
 def get_all_items_in_cart ():
     items = InCartItem.query.filter(InCartItem.user_id == current_user.id).all()
     return [item.to_dict() for item in items]
 
 
-@shopping_cart_routes.route('/', methods=["POST"])
+@shopping_cart_routes.route('/current', methods=["POST"])
 @login_required
 def add_to_cart():
     data = request.get_json()

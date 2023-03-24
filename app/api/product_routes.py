@@ -22,7 +22,7 @@ def get_single_product(id):
     if not product:
         return {"error": "Product no longer available"}
     else:
-        return [product.to_dict()]
+        return product.to_dict()
 
 
 @product_routes.route('/', methods=['POST'])

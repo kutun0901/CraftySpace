@@ -95,7 +95,7 @@ export const addNewProductThunk = product => async (dispatch) => {
     }
 }
 
-export const updateProductThunk = product => async (dispatch) => {
+export const updateProductThunk = (product) => async (dispatch) => {
     const res = await fetch (`/api/products/${product.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -104,7 +104,7 @@ export const updateProductThunk = product => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(updateProduct(data));
-        return null;
+        return data;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {

@@ -10,6 +10,7 @@ import UserListing from "./components/UserListing";
 import ProductDetails from "./components/ProductDetails";
 import NewProduct from "./components/ProductDetails/NewProduct";
 import UpdateProduct from "./components/ProductDetails/UpdateProduct";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path="/products/current/new">
             <NewProduct />
+          </Route>
+          <Route path="/cart">
+            <ShoppingCart />
           </Route>
           <Route path="/products/current">
             <UserListing />
