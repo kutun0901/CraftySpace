@@ -23,7 +23,7 @@ export const getSingleProduct = product => ({
     payload: product
 })
 
-export const updateProduct = product => ({
+export const updateProduct = (product) => ({
     type: UPDATE_PRODUCT,
     payload: product
 })
@@ -95,8 +95,8 @@ export const addNewProductThunk = product => async (dispatch) => {
     }
 }
 
-export const updateProductThunk = (product) => async (dispatch) => {
-    const res = await fetch (`/api/products/${product.id}`, {
+export const updateProductThunk = (id, product) => async (dispatch) => {
+    const res = await fetch (`/api/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)

@@ -55,7 +55,7 @@ export const getAllCartItemsThunk = () => async (dispatch) => {
 
 
 export const addItemToCartThunk = (item) => async (dispatch) => {
-    const res = await fetch(`/api/incart/current`, {
+    const res = await fetch('/api/incart/current', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(item)

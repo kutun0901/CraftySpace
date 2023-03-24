@@ -39,11 +39,11 @@ function App() {
           <Route path="/cart">
             <ShoppingCart />
           </Route>
-          <Route path="/products/current">
-            <UserListing />
-          </Route>
           <Route path="/products/:id/edit">
             <UpdateProduct />
+          </Route>
+          <Route path="/products/current">
+            <UserListing />
           </Route>
           <Route path="/products/:id">
             <ProductDetails />

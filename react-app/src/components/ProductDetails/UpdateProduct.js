@@ -6,14 +6,12 @@ import { getSingleProductThunk, getUserProductsThunk, updateProductThunk } from 
 
 function UpdateProduct() {
 
-    const { id } = useParams()
+    const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const categories = useSelector((state) => state.categories);
     const product = useSelector((state) => state.products.userProducts[id])
-
-    console.log(product);
 
     if (!sessionUser) history.push('/')
 
@@ -29,13 +27,26 @@ function UpdateProduct() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
-    useEffect(() => {
+    useEffect(async () => {
         if (sessionUser) {
-            dispatch(getAllCategoriesThunk());
-            dispatch(getUserProductsThunk());
-            dispatch(getSingleProductThunk(id));
+            await dispatch(getAllCategoriesThunk());
+            await dispatch(getUserProductsThunk());
         }
     }, [dispatch, sessionUser, id]);
+
+    useEffect (() => {
+        const loadInput  = async () => {
+            const targetProduct = await dispatch(getSingleProductThunk(id));
+
+            setName(targetProduct.name)
+            setImages(targetProduct.images)
+            setDescription(targetProduct.description)
+            setQuantity(targetProduct.quantity)
+            setPrice(targetProduct.price)
+            setCategory(targetProduct.category)
+        }
+        loadInput();
+    }, [dispatch])
 
     useEffect(() => {
         let e = {};
@@ -43,8 +54,8 @@ function UpdateProduct() {
         if (!(images ?? []).length > 0) e.emptyImages = "At least one image is required";
         if (!(description ?? '').length > 0)
             e.emptyDescription = "Description is required";
-        if (!(quantity ?? '').length > 0 || quantity < 1) e.emptyQuantity = "Quantity is required";
-        if (!(price ?? '').length > 0 || price < 1) e.emptyPrice = "Price is required and must be greater than 0";
+        if (isNaN(quantity) || quantity < 1) e.emptyQuantity = "Quantity is required";
+        if (isNaN(price) || price < 1) e.emptyPrice = "Price is required and must be greater than 0";
         if (!(category ?? '').length > 0) e.emptyCategory = "Category is required";
         setErrors(e);
     }, [name, description, quantity, price, category, images]);
@@ -57,9 +68,7 @@ function UpdateProduct() {
         e.preventDefault();
         setHasSubmitted(true);
 
-        let newImages = []
-        if (images) newImages.push(images)
-
+        const newImages = images ? [images.join('')] : [];
 
         const product = {
             name,
@@ -72,10 +81,10 @@ function UpdateProduct() {
 
         if (Object.values(errors).length === 0) {
             const data = await dispatch(updateProductThunk(id, product));
-            console.log(product.id);
+            // await dispatch(getSingleProductThunk(id))
 
             if (data) {
-                history.push(`/products/${product.id}`);
+                history.push(`/products/${id}`);
             }
         }
     };

@@ -10,7 +10,6 @@ const AddToCart = ({ item }) => {
 
   const handleAddToCart = async () => {
     await dispatch(addItemToCartThunk({ ...item, quantity }));
-    // await dispatch(getAllCartItems())
     setQuantity(1);
     history.push('/cart');
   };

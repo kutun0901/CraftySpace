@@ -1,3 +1,7 @@
+import { getAllCategories } from "./categories";
+import { getUserProducts } from "./products";
+import { getAllCartItems } from "./shoppingCartItems";
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -49,6 +53,8 @@ export const login = (email, password) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
+		dispatch(getUserProducts())
+		dispatch(getAllCartItems())
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
@@ -106,6 +112,8 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		// case RESET:
+		// 		return initialState
 		default:
 			return state;
 	}
