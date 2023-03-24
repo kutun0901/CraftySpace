@@ -23,11 +23,12 @@ def add_to_cart():
 
     if form.validate_on_submit():
         # Check if the item already exists in the cart
-        item = InCartItem.query.filter_by(user_id=data["user_id"], product_id=data["product_id"]).first()
+        print(data)
+        item = InCartItem.query.filter(InCartItem.id == data["product_id"]).first()
 
         if item:
             # If the item already exists, increase the quantity
-            item.quantity += data["quantity"]
+            item.quantity += 1
         else:
             # If the item does not exist, create a new item
             item = InCartItem(

@@ -119,16 +119,16 @@ const initialState = {}
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_CART_ITEMS: {
-            const newState = {}
+            const newState = {...state}
             for (const item of action.payload) {
                 newState[item.id] = item
             }
             return newState
         }
         case ADD_ITEM_TO_CART: {
-            const newState = { ...state }
-            newState[action.payload.id] = action.payload
-            return newState
+            // const newState = { ...state }
+            // newState[action.payload.id] = action.payload
+            // return newState
           }
         case UPDATE_CART: {
             const newState = { ...state }

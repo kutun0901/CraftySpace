@@ -18,7 +18,7 @@ function UpdateProduct() {
     const categoriesArr = Object.values(categories);
 
     const [name, setName] = useState(product?.name);
-    const [images, setImages] = useState(product?.images);
+    const [images, setImages] = useState(product?.images || '');
     const [description, setDescription] = useState(product?.description);
     const [quantity, setQuantity] = useState(product?.quantity);
     const [price, setPrice] = useState(product?.price);
