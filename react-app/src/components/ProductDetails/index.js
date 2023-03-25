@@ -27,7 +27,6 @@ function ProductDetails () {
             quantity: Number(quantity)
         };
         await dispatch(addItemToCartThunk(item));
-
         history.push('/cart')
     };
 
@@ -48,8 +47,6 @@ function ProductDetails () {
                 <p>{product.description}</p>
                 <p>Price: {product.price}</p>
                 <form onSubmit={handleAddToCart}>
-                    <label htmlFor="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                     <button type="submit">Add to Cart</button>
                 </form>
             </div>

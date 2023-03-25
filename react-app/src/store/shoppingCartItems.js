@@ -20,10 +20,10 @@ export const addItemToCart = item => ({
 export const updateCart = (id, quantity) => {
     if (quantity < 1 || !quantity) return removeItem(id);
     return {
-      type: UPDATE_CART,
-      payload: { id, quantity }
+        type: UPDATE_CART,
+        payload: { id, quantity }
     };
-  };
+};
 
 export const removeItem = itemId => ({
     type: REMOVE_ITEM,
@@ -74,23 +74,23 @@ export const addItemToCartThunk = (item) => async (dispatch) => {
 export const updateCartThunk = (item) => async (dispatch) => {
     const { id, quantity } = item;
     const res = await fetch(`/api/incart/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ quantity })
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quantity })
     });
     if (res.ok) {
-      const data = await res.json();
-      dispatch(updateCart(id, quantity));
-      return data;
+        const data = await res.json();
+        dispatch(updateCart(id, quantity));
+        return data;
     } else if (res.status < 500) {
-      const data = await res.json();
-      if (data.errors) {
-        return data.errors;
-      }
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
     } else {
-      return ["An Error occurred. Please try again later."];
+        return ["An Error occurred. Please try again later."];
     }
-  };
+};
 
 export const removeItemThunk = itemId => async (dispatch) => {
     const res = await fetch(`/api/incart/${itemId}`, {
@@ -126,10 +126,23 @@ export default function reducer(state = initialState, action) {
             return newState
         }
         case ADD_ITEM_TO_CART: {
+            const newItem = action.payload;
+            const newState = { ...state };
+            const existingItem = newState[newItem.id];
+
+            if (existingItem) {
+                existingItem.quantity += Number(newItem.quantity);
+            } else {
+                newState[newItem.id] = { ...newItem, quantity: Number(newItem.quantity) };
+            }
+
+            console.log('newState:', newState);
+
+            return newState;
             // const newState = { ...state }
             // newState[action.payload.id] = action.payload
             // return newState
-          }
+        }
         case UPDATE_CART: {
             const newState = { ...state }
             newState[action.payload.id].quantity = action.payload.quantity
@@ -139,7 +152,7 @@ export default function reducer(state = initialState, action) {
             const newState = { ...state }
             delete newState[action.payload]
             return newState
-          }
+        }
         case RESET: {
             return initialState
         }
