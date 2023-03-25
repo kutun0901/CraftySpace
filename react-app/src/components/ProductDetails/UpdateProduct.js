@@ -2,91 +2,115 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getAllCategoriesThunk } from "../../store/categories";
-import { getSingleProductThunk, getUserProductsThunk, updateProductThunk } from "../../store/products";
+import { getSingleProduct, updateProductThunk } from "../../store/products";
 
 function UpdateProduct() {
-
-    const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const { id } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
     const categories = useSelector((state) => state.categories);
-    const product = useSelector((state) => state.products.userProducts[id])
-
-    if (!sessionUser) history.push('/')
 
     const categoriesArr = Object.values(categories);
 
-    const [name, setName] = useState(product?.name);
-    const [images, setImages] = useState(product?.images || '');
-    const [description, setDescription] = useState(product?.description);
-    const [quantity, setQuantity] = useState(product?.quantity);
-    const [price, setPrice] = useState(product?.price);
-    const [category, setCategory] = useState(product?.category);
+    const [name, setName] = useState("");
+    const [images, setImages] = useState([]);
+    const [description, setDescription] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [price, setPrice] = useState("");
+    const [category, setCategory] = useState("");
     const [errors, setErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [newImageFields, setNewImageFields] = useState([]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`/api/products/${id}`);
+            if (res.ok) {
+                const product = await res.json();
+                setName(product.name);
+                setImages(product.images);
+                setDescription(product.description);
+                setQuantity(product.quantity);
+                setPrice(product.price);
+                setCategory(product.category_id);
+            } else {
+                history.push("/");
+            }
+        };
 
-    useEffect(async () => {
+        fetchData();
+    }, [id, history]);
+
+    useEffect(() => {
         if (sessionUser) {
-            await dispatch(getAllCategoriesThunk());
-            await dispatch(getUserProductsThunk());
+            dispatch(getAllCategoriesThunk());
         }
-    }, [dispatch, sessionUser, id]);
-
-    useEffect (() => {
-        const loadInput  = async () => {
-            const targetProduct = await dispatch(getSingleProductThunk(id));
-
-            setName(targetProduct.name)
-            setImages(targetProduct.images)
-            setDescription(targetProduct.description)
-            setQuantity(targetProduct.quantity)
-            setPrice(targetProduct.price)
-            setCategory(targetProduct.category)
-        }
-        loadInput();
-    }, [dispatch])
+    }, [dispatch, sessionUser]);
 
     useEffect(() => {
         let e = {};
-        if (!(name ?? '').length > 0) e.emptyName = "Name is required";
-        if (!(images ?? []).length > 0) e.emptyImages = "At least one image is required";
-        if (!(description ?? '').length > 0)
+        if (!name.length) e.emptyName = "Name is required";
+        if (!images.length && !newImageFields.length)
+            e.emptyImages = "At least one image is required";
+        if (!description.length)
             e.emptyDescription = "Description is required";
-        if (isNaN(quantity) || quantity < 1) e.emptyQuantity = "Quantity is required";
-        if (isNaN(price) || price < 1) e.emptyPrice = "Price is required and must be greater than 0";
-        if (!(category ?? '').length > 0) e.emptyCategory = "Category is required";
+        if (!quantity || quantity < 1)
+            e.emptyQuantity = "Quantity is required and must be greater than 0";
+        if (!price || price < 1)
+            e.emptyPrice = "Price is required and must be greater than 0";
+        if (!category) e.emptyCategory = "Category is required";
         setErrors(e);
-    }, [name, description, quantity, price, category, images]);
-
-
-
-    if (!sessionUser) return null;
+    }, [name, description, quantity, price, category, images, newImageFields]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
 
-        const newImages = images ? [images.join('')] : [];
+        let newImages = [];
+        newImageFields.forEach((field) => {
+            if (field.length > 0) newImages.push(field);
+        });
 
-        const product = {
+        const updatedProduct = {
             name,
             description,
             category_id: category,
             price,
             quantity,
-            image_urls: newImages,
+            image_urls: [...images, ...newImages],
         };
 
         if (Object.values(errors).length === 0) {
-            const data = await dispatch(updateProductThunk(id, product));
-            // await dispatch(getSingleProductThunk(id))
+            const data = await dispatch(updateProductThunk(id, updatedProduct));
+            // await dispatch(getSingleProduct(id))
 
             if (data) {
                 history.push(`/products/${id}`);
             }
         }
+    }
+
+    const handleAddNewImageField = () => {
+        setNewImageFields([...newImageFields, ""]);
+    };
+
+    const handleNewImageFieldChange = (index, value) => {
+        const newFields = [...newImageFields];
+        newFields[index] = value;
+        setNewImageFields(newFields);
+    };
+
+    const handleRemoveNewImageField = (index) => {
+        const newFields = [...newImageFields];
+        newFields.splice(index, 1);
+        setNewImageFields(newFields);
+    };
+
+    const handleRemoveImage = (index) => {
+        const newImages = [...images];
+        newImages.splice(index, 1);
+        setImages(newImages);
     };
 
     return (
@@ -104,14 +128,42 @@ function UpdateProduct() {
                     </label>
                 </div>
                 <div>
-                    {hasSubmitted && errors.emptyImages && <div>{errors.emptyImages}</div>}
+                    {hasSubmitted && errors.emptyImages && (
+                        <div>{errors.emptyImages}</div>
+                    )}
                     <label>
                         Images:
-                        <input
-                            type="text"
-                            value={images}
-                            onChange={(e) => setImages(e.target.value)}
-                        />
+                        {images.map((image, index) => (
+                            <div key={index}>
+                                <input
+                                    type="text"
+                                    value={image}
+                                    onChange={(e) => {
+                                        const newImages = [...images];
+                                        newImages[index] = e.target.value;
+                                        setImages(newImages);
+                                    }}
+                                />
+                                <button type="button" onClick={() => handleRemoveImage(index)}>
+                                    Remove
+                                </button>
+                            </div>
+                        ))}
+                        {newImageFields.map((field, index) => (
+                            <div key={index}>
+                                <input
+                                    type="text"
+                                    value={field}
+                                    onChange={(e) => handleNewImageFieldChange(index, e.target.value)}
+                                />
+                                <button type="button" onClick={() => handleRemoveNewImageField(index)}>
+                                    Remove
+                                </button>
+                            </div>
+                        ))}
+                        <button type="button" onClick={handleAddNewImageField}>
+                            Add New Image
+                        </button>
                     </label>
                 </div>
                 <div>

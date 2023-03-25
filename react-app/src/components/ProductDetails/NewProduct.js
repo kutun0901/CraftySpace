@@ -20,18 +20,21 @@ function NewProduct() {
   const [category, setCategory] = useState("");
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [newImageFields, setNewImageFields] = useState([]); // new state to keep track of new image fields
 
   useEffect(() => {
     let e = {};
     if (!name.length > 0) e.emptyName = "Name is required";
-    if (!images.length > 0) e.emptyImages = "At least one image is required";
+    if (!images.length && !newImageFields.length) e.emptyImages = "At least one image is required";
     if (!description.length > 0)
       e.emptyDescription = "Description is required";
-    if (!quantity.length > 0 || quantity < 1) e.emptyQuantity = "Quantity is required";
-    if (!price.length > 0 || price < 1) e.emptyPrice = "Price is required and must be greater than 0";
+    if (!quantity.length > 0 || quantity < 1)
+      e.emptyQuantity = "Quantity is required";
+    if (!price.length > 0 || price < 1)
+      e.emptyPrice = "Price is required and must be greater than 0";
     if (!category.length > 0) e.emptyCategory = "Category is required";
     setErrors(e);
-  }, [name, description, quantity, price, category, images]);
+  }, [name, description, quantity, price, category, images, newImageFields]);
 
   useEffect(() => {
     if (sessionUser) {
@@ -45,9 +48,10 @@ function NewProduct() {
     e.preventDefault();
     setHasSubmitted(true);
 
-    let newImages = []
-    if (images) newImages.push(images)
-
+    let newImages = [];
+    newImageFields.forEach((field) => {
+      if (field.length > 0) newImages.push(field);
+    });
 
     const newProduct = {
       name,
@@ -66,6 +70,22 @@ function NewProduct() {
     }
   };
 
+  const handleAddNewImageField = () => {
+    setNewImageFields([...newImageFields, ""]);
+  };
+
+  const handleNewImageFieldChange = (index, value) => {
+    const newFields = [...newImageFields];
+    newFields[index] = value;
+    setNewImageFields(newFields);
+  };
+
+  const handleRemoveNewImageField = (index) => {
+    const newFields = [...newImageFields];
+    newFields.splice(index, 1);
+    setNewImageFields(newFields);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -81,18 +101,45 @@ function NewProduct() {
           </label>
         </div>
         <div>
-          {hasSubmitted && errors.emptyImages && <div>{errors.emptyImages}</div>}
+          {hasSubmitted && errors.emptyImages && (
+            <div>{errors.emptyImages}</div>
+          )}
           <label>
             Images:
-            <input
-              type="text"
-              value={images}
-              onChange={(e) => setImages(e.target.value)}
-            />
+            {images.map((image, index) => (
+              <div key={index}>
+                <input
+                  type="text"
+                  value={image}
+                  onChange={(e) => {
+                    const newImages = [...images];
+                    newImages[index] = e.target.value;
+                    setImages(newImages);
+                  }}
+                />
+              </div>
+            ))}
+            {newImageFields.map((field, index) => (
+              <div key={index}>
+                <input
+                  type="text"
+                  value={field}
+                  onChange={(e) => handleNewImageFieldChange(index, e.target.value)}
+                />
+                <button type="button" onClick={() => handleRemoveNewImageField(index)}>
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button type="button" onClick={handleAddNewImageField}>
+              Add New Image
+            </button>
           </label>
         </div>
         <div>
-          {hasSubmitted && errors.emptyDescription && <div>{errors.emptyDescription}</div>}
+          {hasSubmitted && errors.emptyDescription && (
+            <div>{errors.emptyDescription}</div>
+          )}
           <label>
             Description:
             <textarea
@@ -102,7 +149,9 @@ function NewProduct() {
           </label>
         </div>
         <div>
-          {hasSubmitted && errors.emptyQuantity && <div>{errors.emptyQuantity}</div>}
+          {hasSubmitted && errors.emptyQuantity && (
+            <div>{errors.emptyQuantity}</div>
+          )}
           <label>
             Quantity:
             <input
