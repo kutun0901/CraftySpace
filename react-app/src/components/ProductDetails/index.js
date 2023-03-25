@@ -1,24 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getSingleProductThunk } from "../../store/products";
-
+import { addItemToCartThunk, getAllCartItems } from '../../store/shoppingCartItems';
 
 function ProductDetails () {
 
+    const history = useHistory()
     const { id } = useParams();
-    console.log('id:', id);
-    console.log('useParams:', useParams());
     const dispatch = useDispatch();
     const product = useSelector(state => state.products.singleProduct);
-
+    const [quantity, setQuantity] = useState(1);
+    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(getSingleProductThunk(id));
     }, [dispatch, id]);
 
+    const handleAddToCart = async (e) => {
+        e.preventDefault();
+        if (!sessionUser) return window.alert('Log in required for purchasing this product')
+
+        const item = {
+            user_id: sessionUser.id,
+            product_id: product.id,
+            quantity: Number(quantity)
+        };
+        await dispatch(addItemToCartThunk(item));
+        history.push('/cart')
+    };
+
     if (!product) {
-        return <p>Loading...</p>;
+        return null;
     }
 
     return (
@@ -33,6 +46,9 @@ function ProductDetails () {
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p>Price: {product.price}</p>
+                <form onSubmit={handleAddToCart}>
+                    <button type="submit">Add to Cart</button>
+                </form>
             </div>
         </div>
     );

@@ -18,7 +18,9 @@ class InCartItem(db.Model):
 
     def to_dict(self):
         return {
-            "user": self.user.to_dict(),
-            "product": self.product.to_dict(),
-            "quantity": self.quantity
+            "id": self.id,
+            "user_id": self.user_id,
+            "product_id": self.product_id,
+            "quantity": self.quantity,
+            "product": self.product.to_dict()
         }

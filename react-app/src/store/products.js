@@ -23,7 +23,7 @@ export const getSingleProduct = product => ({
     payload: product
 })
 
-export const updateProduct = product => ({
+export const updateProduct = (product) => ({
     type: UPDATE_PRODUCT,
     payload: product
 })
@@ -95,8 +95,8 @@ export const addNewProductThunk = product => async (dispatch) => {
     }
 }
 
-export const updateProductThunk = product => async (dispatch) => {
-    const res = await fetch (`/api/products/${product.id}`, {
+export const updateProductThunk = (id, product) => async (dispatch) => {
+    const res = await fetch (`/api/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)
@@ -104,7 +104,7 @@ export const updateProductThunk = product => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(updateProduct(data));
-        return null;
+        return data;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -174,7 +174,6 @@ export default function reducer(state = initialState, action) {
         }
         case GET_USER_PRODUCTS: {
             const products = {}
-            console.log(action.payload);
             for (const product of action.payload) {
                 products[product.id] = product
             }

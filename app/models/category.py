@@ -1,4 +1,4 @@
-from .db import db, add_prefix_for_prod, SCHEMA, environment
+from .db import db, SCHEMA, environment
 
 class Category(db.Model):
     __tablename__ = "categories"
@@ -15,5 +15,6 @@ class Category(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "name": self.name
         }
