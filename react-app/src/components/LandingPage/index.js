@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllCategoriesThunk } from "../../store/categories";
 import { getAllProductsThunk } from '../../store/products'
+import "./LandingPage.css"
+
 
 function LandingPage() {
     const dispatch = useDispatch()
@@ -25,7 +27,7 @@ function LandingPage() {
                 {sessionUser ? (
                     <div className="welcome">
                         <h1>
-                            welcome back, {sessionUser ? sessionUser.firstName : null}
+                            Welcome back, {sessionUser ? sessionUser.firstName : null}
                         </h1>
                     </div>
 

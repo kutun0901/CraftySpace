@@ -83,7 +83,6 @@ function UpdateProduct() {
 
         if (Object.values(errors).length === 0) {
             const data = await dispatch(updateProductThunk(id, updatedProduct));
-            // await dispatch(getSingleProduct(id))
 
             if (data) {
                 history.push(`/products/${id}`);
