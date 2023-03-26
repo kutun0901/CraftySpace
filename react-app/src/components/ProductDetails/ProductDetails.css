@@ -1,0 +1,111 @@
+.product-detail-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem auto;
+    max-width: 1200px;
+  }
+
+  .product-image-review {
+    flex: 1 1 40%;
+    margin-right: 2rem;
+  }
+
+  .product-images-container {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .thumbnail-images {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+
+  .thumbnail-images img {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  .thumbnail-images img.active {
+    border-color: #000;
+  }
+
+  .current-image {
+    flex: 1 1 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .current-image img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+
+  .current-image img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+
+  .image-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .image-navigation button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px;
+    cursor: pointer;
+    width: 80px;
+    border-radius: 5px;
+  }
+
+  .image-navigation button:hover {
+    background-color: #f2f2f2;
+  }
+
+  .image-navigation button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .product-detail-container {
+    flex: 1 1 50%;
+  }
+
+  .product-detail-container h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .product-detail-container p {
+    margin-bottom: 10px;
+  }
+
+  .product-detail-container form {
+    margin-top: 20px;
+  }
+
+  .product-detail-container button {
+    background-color: #eedabf;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .product-detail-container button:hover {
+    background-color: #fff;
+    color: #eedabf;
+    border: 2px solid #eedabf;
+  }
