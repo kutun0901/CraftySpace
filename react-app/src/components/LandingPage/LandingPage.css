@@ -73,7 +73,7 @@ body {
   }
 
   .product:hover {
-    box-shadow: 0 0 20px rgba(240, 22, 22, 0.2);
+    box-shadow: 0 0 10px rgba(219, 16, 16, 0.766);
     transform: scale(1.05);
     /* border-color: #e84d4d; */
   }
