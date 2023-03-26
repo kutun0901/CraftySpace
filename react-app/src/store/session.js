@@ -1,5 +1,5 @@
 // import { getAllCategories } from "./categories";
-// import { getUserProducts } from "./products";
+// import { getUserProducts, getUserProductsThunk } from "./products";
 // import { getAllCartItems, getAllCartItemsThunk } from "./shoppingCartItems";
 
 // constants
@@ -52,9 +52,10 @@ export const login = (email, password) => async (dispatch) => {
 
 	if (response.ok) {
 		const data = await response.json();
+		// console.log(data);
 		dispatch(setUser(data));
 		// dispatch(getUserProducts())
-		// dispatch(getAllCartItemsThunk())
+		// dispatch(getAllCartItems())
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();

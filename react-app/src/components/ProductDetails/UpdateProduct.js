@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getAllCategoriesThunk } from "../../store/categories";
-import { getSingleProduct, updateProductThunk } from "../../store/products";
+import { getSingleProduct, getUserProductsThunk, updateProductThunk } from "../../store/products";
+import './UpdateProduct.css'
+
 
 function UpdateProduct() {
     const dispatch = useDispatch();
@@ -46,6 +48,7 @@ function UpdateProduct() {
     useEffect(() => {
         if (sessionUser) {
             dispatch(getAllCategoriesThunk());
+            dispatch(getUserProductsThunk())
         }
     }, [dispatch, sessionUser]);
 
@@ -119,106 +122,106 @@ function UpdateProduct() {
     };
 
     return (
-        <div>
+        <div className="update-product-container update-product-page">
             <form onSubmit={handleSubmit}>
-                <div>
-                    {hasSubmitted && errors.emptyName && <div>{errors.emptyName}</div>}
+                <div className="form-group">
                     <label>
                         Name:
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
                     </label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    {hasSubmitted && errors.emptyName && (<div className="error">{errors.emptyName}</div>)}
                 </div>
-                <div>
-                    {hasSubmitted && errors.emptyImages && (
-                        <div>{errors.emptyImages}</div>
-                    )}
+                <div className="form-group">
                     <label>
                         Images:
-                        {images.map((image, index) => (
-                            <div key={index}>
-                                <input
-                                    type="text"
-                                    value={image}
-                                    onChange={(e) => {
-                                        const newImages = [...images];
-                                        newImages[index] = e.target.value;
-                                        setImages(newImages);
-                                    }}
-                                />
-                                <button type="button" onClick={() => handleRemoveImage(index)}>
-                                    Remove
-                                </button>
-                            </div>
-                        ))}
-                        {newImageFields.map((field, index) => (
-                            <div key={index}>
-                                <input
-                                    type="text"
-                                    value={field}
-                                    onChange={(e) => handleNewImageFieldChange(index, e.target.value)}
-                                />
-                                <button type="button" onClick={() => handleRemoveNewImageField(index)}>
-                                    Remove
-                                </button>
-                            </div>
-                        ))}
-                        <button type="button" onClick={handleAddNewImageField}>
-                            Add New Image
-                        </button>
                     </label>
+                    {images.map((image, index) => (
+                        <div key={index}>
+                            <input
+                                type="text"
+                                value={image}
+                                onChange={(e) => {
+                                    const newImages = [...images];
+                                    newImages[index] = e.target.value;
+                                    setImages(newImages);
+                                }}
+                            />
+                            <button type="button" onClick={() => handleRemoveImage(index)}>
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+                    {newImageFields.map((field, index) => (
+                        <div key={index}>
+                            <input
+                                type="text"
+                                value={field}
+                                onChange={(e) => handleNewImageFieldChange(index, e.target.value)}
+                            />
+                            <button type="button" onClick={() => handleRemoveNewImageField(index)}>
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+                    <button type="button" onClick={handleAddNewImageField}>
+                        Add New Image
+                    </button>
+                    {hasSubmitted && errors.emptyImages && (
+                        <div className="error">{errors.emptyImages}</div>
+                    )}
                 </div>
-                <div>
-                    {hasSubmitted && errors.emptyDescription && <div>{errors.emptyDescription}</div>}
+                <div className="form-group">
                     <label>
                         Description:
-                        <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
                     </label>
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    {hasSubmitted && errors.emptyDescription && (<div className="error">{errors.emptyDescription}</div>)}
                 </div>
-                <div>
-                    {hasSubmitted && errors.emptyQuantity && <div>{errors.emptyQuantity}</div>}
+                <div className="form-group">
                     <label>
                         Quantity:
-                        <input
-                            type="number"
-                            value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
-                        />
                     </label>
+                    <input
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                    />
+                    {hasSubmitted && errors.emptyQuantity && (<div className="error">{errors.emptyQuantity}</div>)}
                 </div>
-                <div>
-                    {hasSubmitted && errors.emptyPrice && <div>{errors.emptyPrice}</div>}
+                <div className="form-group">
                     <label>
                         Price:
-                        <input
-                            type="number"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                        />
                     </label>
+                    <input
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
+                    {hasSubmitted && errors.emptyPrice && (<div className="error">{errors.emptyPrice}</div>)}
                 </div>
-                <div>
-                    {hasSubmitted && errors.emptyCategory && <div>{errors.emptyCategory}</div>}
+                <div className="form-group">
                     <label>
                         Category:
-                        <select
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="">Select a category</option>
-                            {categoriesArr.map((category) => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
-                        </select>
                     </label>
+                    <select
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                    >
+                        <option value="">Select a category</option>
+                        {categoriesArr.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
+                    {hasSubmitted && errors.emptyCategory && (<div className="error">{errors.emptyCategory}</div>)}
                 </div>
                 <button type="submit">Update</button>
             </form>
