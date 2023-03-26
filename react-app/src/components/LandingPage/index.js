@@ -56,7 +56,7 @@ function LandingPage() {
                     <div key={product.id} className="product">
                         <NavLink to={`/products/${product.id}`}>
                             <img src={product.images ? product.images[0] : null} alt={product.title} />
-                            <h3>{product.name}</h3>
+                            <h4>{product.name}</h4>
                             <p>{product.price}</p>
                             <p>{product.description}</p>
                         </NavLink>

@@ -1,0 +1,97 @@
+.login-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+    min-width: 600px;
+    border: 1px solid gray;
+    background-color: transparent;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.login-modal-heading {
+    font-size: 2.5rem;
+    margin: 0rem 0;
+    color: black
+}
+
+.login-modal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-modal-label {
+    display: flex;
+    flex-direction: column;
+    margin: 0.8rem 0;
+    width: 100%;
+    font-size: 1.0rem;
+    font-weight: 560;
+
+}
+
+.login-modal-input {
+    padding: 0.3rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border: 1px solid black;
+    width: 100%;
+    max-width: 350px;
+    height: 40px;
+    font-size: 1.0rem;
+}
+
+.login-modal-errors {
+    color: red;
+    margin-bottom: 1rem;
+}
+
+.login-modal-button,
+.login-modal-button-demo {
+    padding: 0.5rem 1rem;
+    margin: 0.6rem 0;
+    margin-left: 10px;
+    border-radius: 8px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+
+    transition: all 0.3s ease;
+    width: 365px;
+
+}
+
+.login-modal-button {
+    background-color: #FDEBD2;
+    color: white;
+    border: none;
+    margin-bottom: 6px;
+}
+
+.login-modal-button-demo {
+    background-color: #FDEBD2;
+    color: white;
+    border: none;
+}
+
+.login-modal-button:hover,
+.login-modal-button-demo:hover {
+    /* border: 2px solid black; */
+    color: black;
+    background-color: #eedabf;
+}
+
+.login-modal-button:active,
+.login-modal-button-demo:active {
+    background-color: #3c7f56;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(4px);
+}

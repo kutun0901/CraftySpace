@@ -1,6 +1,6 @@
-import { getAllCategories } from "./categories";
-import { getUserProducts } from "./products";
-import { getAllCartItems, getAllCartItemsThunk } from "./shoppingCartItems";
+// import { getAllCategories } from "./categories";
+// import { getUserProducts } from "./products";
+// import { getAllCartItems, getAllCartItemsThunk } from "./shoppingCartItems";
 
 // constants
 const SET_USER = "session/SET_USER";
@@ -79,15 +79,15 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (firstName, email, password) => async (dispatch) => {
+export const signUp = (email, firstName, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			firstName,
 			email,
+			firstName,
 			password,
 		}),
 	});
