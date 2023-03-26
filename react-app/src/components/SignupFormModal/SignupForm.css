@@ -56,7 +56,7 @@
     margin-left: 15px;
     border-radius: 8px;
     border: none;
-    background-color: #FDEBD2;
+    background-color: #eedabf;
     color: white;
     cursor: pointer;
     width: 360px;
@@ -70,12 +70,11 @@
   }
 
   .signup-modal-button:hover {
-    background-color: #eedabf;
-    color: black;
+    background-color: #cebea8;
   }
 
   .signup-modal-button:active {
-    background-color: #FDEBD2;
+    background-color: #eedabf;
     box-shadow: 0 2px rgba(0, 0, 0, 0.2) inset;
     transform: translateY(4px);
   }

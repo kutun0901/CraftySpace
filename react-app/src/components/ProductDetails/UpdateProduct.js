@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getAllCategoriesThunk } from "../../store/categories";
 import { getSingleProduct, updateProductThunk } from "../../store/products";
 
@@ -10,6 +10,7 @@ function UpdateProduct() {
     const { id } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
     const categories = useSelector((state) => state.categories);
+    const product = useSelector((state) => state.products.userProducts[id])
 
     const categoriesArr = Object.values(categories);
 
@@ -35,7 +36,7 @@ function UpdateProduct() {
                 setPrice(product.price);
                 setCategory(product.category_id);
             } else {
-                history.push("/");
+                return (<div>Product not available</div>)
             }
         };
 
@@ -50,10 +51,10 @@ function UpdateProduct() {
 
     useEffect(() => {
         let e = {};
-        if (!name.length) e.emptyName = "Name is required";
-        if (!images.length && !newImageFields.length)
+        if (!name || !name.length) e.emptyName = "Name is required";
+        if ((!images || !images.length) && (!newImageFields || !newImageFields.length))
             e.emptyImages = "At least one image is required";
-        if (!description.length)
+        if (!description || !description.length)
             e.emptyDescription = "Description is required";
         if (!quantity || quantity < 1)
             e.emptyQuantity = "Quantity is required and must be greater than 0";
@@ -62,6 +63,11 @@ function UpdateProduct() {
         if (!category) e.emptyCategory = "Category is required";
         setErrors(e);
     }, [name, description, quantity, price, category, images, newImageFields]);
+
+
+    if (!sessionUser) return <Redirect to='/' />;
+    if (!product) return (<div style={{ marginTop: '30px', fontSize: '20px' }}>Sorry!!! product not available</div>)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

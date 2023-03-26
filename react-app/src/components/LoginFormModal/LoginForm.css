@@ -70,14 +70,14 @@
 }
 
 .login-modal-button {
-    background-color: #FDEBD2;
+    background-color: #eedabf;
     color: white;
     border: none;
     margin-bottom: 6px;
 }
 
 .login-modal-button-demo {
-    background-color: #FDEBD2;
+    background-color: #eedabf;
     color: white;
     border: none;
 }
@@ -85,8 +85,8 @@
 .login-modal-button:hover,
 .login-modal-button-demo:hover {
     /* border: 2px solid black; */
-    color: black;
-    background-color: #eedabf;
+    /* color: black; */
+    background-color: #cebea8;
 }
 
 .login-modal-button:active,
