@@ -57,7 +57,8 @@ function LandingPage() {
                         <NavLink to={`/products/${product.id}`}>
                             <img src={product.images ? product.images[0] : null} alt={product.title} />
                             <h4>{product.name}</h4>
-                            <p>{product.price}</p>
+                            <p><i className="fa-solid fa-star"></i> {product.avgRating.toFixed(1)} </p>
+                            <p>{product.price.toFixed(2)}</p>
                             <p>{product.description}</p>
                         </NavLink>
                     </div>

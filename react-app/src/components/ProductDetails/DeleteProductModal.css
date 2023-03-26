@@ -1,0 +1,67 @@
+
+  .delete_confirmation_modal_title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .delete_confirmation_modal_info {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .delete_confirmation_modal_errors_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .delete_confirmation_modal_errors_list li {
+    margin-bottom: 5px;
+  }
+
+  .delete_confirmation_modal_button_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .delete_confirmation_modal_cancel_button {
+    background-color: #eedabf;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+  }
+
+  .delete_confirmation_modal_cancel_button:hover {
+    background-color: #fff;
+    color: #eedabf;
+    border: 2px solid #eedabf;
+  }
+
+  .delete_confirmation_modal_confirm_button {
+    background-color: #fff;
+    color: #eedabf;
+    border: 2px solid #eedabf;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .delete_confirmation_modal_confirm_button:hover {
+    background-color: #eedabf;
+    color: #fff;
+  }
