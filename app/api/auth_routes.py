@@ -61,11 +61,12 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    # print("==============================")
+    # print(form.data)
     if form.validate_on_submit():
         user = User(
             email=form.data['email'],
-            firstName=form.data['firstName'],
+            first_name=form.data['firstName'],
             password=form.data['password']
         )
         db.session.add(user)

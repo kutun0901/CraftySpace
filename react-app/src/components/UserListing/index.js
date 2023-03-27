@@ -51,7 +51,9 @@ function UserListing() {
                                     <NavLink to={`/products/${product.id}/edit`}>
                                         <button className="update-button">Update</button>
                                     </NavLink>
-                                    <OpenModalButton modalComponent={<DeleteProductModal product={product} />} buttonText="Delete" className="delete-listing-button"/>
+                                    <div className="delete-listing-container">
+                                        <OpenModalButton modalComponent={<DeleteProductModal product={product} />} buttonText="Delete" className="delete-listing-button" />
+                                    </div>
                                 </div>
                             </div>
                         </li>

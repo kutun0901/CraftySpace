@@ -27,7 +27,8 @@ function NewProduct() {
   useEffect(() => {
     let e = {};
     if (!name.length > 0) e.emptyName = "Name is required";
-    if (!images.length && !newImageFields.length) e.emptyImages = "At least one image is required";
+    if (!images.length && !newImageFields.length ) e.emptyImages = "At least one image is required";
+    if (newImageFields[0] === "" ) e.emptyImages = "At least one image is required";
     if (!description.length > 0)
       e.emptyDescription = "Description is required";
     if (!quantity.length > 0 || quantity < 1)

@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
 	return (
 		<nav className='navigation-container'>
 			<NavLink exact to='/' className='navigation-logo'>
-				<i className="fa-solid fa-hat-wizard"></i>
+				<i className="fa-solid fa-wand-sparkles"></i>
 				CraftySpace
 			</NavLink>
 			<div>

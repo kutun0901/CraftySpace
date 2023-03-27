@@ -113,6 +113,12 @@
   margin-left: 20px;
 }
 
+.profile_menu_button{
+  border: none;
+  padding: 5px;
+  background-color: #fff;
+}
+
 nav ul.profile-dropdown {
   position: absolute;
   top: 60px;

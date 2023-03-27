@@ -113,6 +113,8 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 98px;
+    margin-bottom: 5px;
   }
 
   .update-button:hover {
@@ -121,7 +123,7 @@
     border: 2px solid #eedabf;
   }
 
-  .delete-listing-button {
+  .delete-listing-container button {
     background-color: #fff;
     color: #eedabf;
     border: 2px solid #eedabf;
@@ -131,9 +133,10 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 98px;
   }
 
-  .delete-listing-button:hover {
+  .delete-listing-container button:hover {
     background-color: #eedabf;
     color: #fff;
   }

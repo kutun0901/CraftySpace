@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getSingleProductThunk } from "../../store/products";
-import { addItemToCartThunk } from '../../store/shoppingCartItems';
+import { addItemToCartThunk, getAllCartItemsThunk } from '../../store/shoppingCartItems';
 import './ProductDetails.css'
 
 
@@ -21,6 +21,7 @@ function ProductDetails() {
 
     useEffect(() => {
         dispatch(getSingleProductThunk(id));
+        dispatch(getAllCartItemsThunk())
     }, [dispatch, id]);
 
     const handleAddToCart = async (e) => {
@@ -34,7 +35,7 @@ function ProductDetails() {
           return total;
         }, 0);
 
-        if (inCartQuantity + Number(quantity) > product.quantity) {
+        if (inCartQuantity >= product.quantity) {
           return window.alert('The maximum available quantity for this product is ' + product.quantity);
         }
 

@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { getAllCartItemsThunk, updateCartThunk, removeItemThunk } from '../../store/shoppingCartItems';
 import './ShoppingCart.css';
 
 const ShoppingCart = () => {
+
   const dispatch = useDispatch();
   const cartItems = useSelector(state => Object.values(state.cart));
-
+  const sessionUser = useSelector(state => state.session.user)
   const cartItemsArr = Object.values(cartItems)
 
   useEffect(() => {
     dispatch(getAllCartItemsThunk());
   }, [dispatch]);
+
+  if (!sessionUser) return <Redirect to='/' />
 
   const handleQuantityChange = (item, quantity) => {
     if (quantity <= item.product.quantity) {
