@@ -15,7 +15,11 @@ const ShoppingCart = () => {
   }, [dispatch]);
 
   const handleQuantityChange = (item, quantity) => {
-    dispatch(updateCartThunk({ ...item, quantity }));
+    if (quantity <= item.product.quantity) {
+      dispatch(updateCartThunk({ ...item, quantity }));
+    } else {
+      return window.alert("Item is out of stock. Please check back later.")
+    }
   };
 
   const handleRemoveItem = (itemId) => {
