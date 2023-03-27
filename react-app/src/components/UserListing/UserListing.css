@@ -1,0 +1,142 @@
+.user-listing {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+
+  .user-listing-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .user-listing-header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .user-listing-header p {
+    font-size: 18px;
+    color: #666;
+  }
+
+  .store-listing {
+    margin: 0;
+    padding: 0;
+  }
+
+  .store-listing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f6f1;
+  }
+
+  .store-listing-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .item-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .item-details h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+
+  .item-details p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .item-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-price p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f60;
+    margin-top: 10px;
+  }
+
+  .item-details img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .add-listing-button {
+  background-color: #eedabf;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-listing-button:hover {
+  background-color: #fff;
+  color: #eedabf;
+  border: 2px solid #eedabf;
+}
+
+  .update-button {
+    background-color: #eedabf;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 98px;
+    margin-bottom: 5px;
+  }
+
+  .update-button:hover {
+    background-color: #fff;
+    color: #eedabf;
+    border: 2px solid #eedabf;
+  }
+
+  .delete-listing-container button {
+    background-color: #fff;
+    color: #eedabf;
+    border: 2px solid #eedabf;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 98px;
+  }
+
+  .delete-listing-container button:hover {
+    background-color: #eedabf;
+    color: #fff;
+  }

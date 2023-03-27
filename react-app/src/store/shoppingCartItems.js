@@ -128,7 +128,7 @@ export default function reducer(state = initialState, action) {
         case ADD_ITEM_TO_CART: {
             const newItem = action.payload;
             const newState = { ...state };
-            const existingItem = newState[newItem.id];
+            const existingItem = newState[newItem.product_id];
 
             if (existingItem) {
                 existingItem.quantity += Number(newItem.quantity);

@@ -1,6 +1,6 @@
-import { getAllCategories } from "./categories";
-import { getUserProducts } from "./products";
-import { getAllCartItems, getAllCartItemsThunk } from "./shoppingCartItems";
+// import { getAllCategories } from "./categories";
+// import { getUserProducts, getUserProductsThunk } from "./products";
+// import { getAllCartItems, getAllCartItemsThunk } from "./shoppingCartItems";
 
 // constants
 const SET_USER = "session/SET_USER";
@@ -52,9 +52,10 @@ export const login = (email, password) => async (dispatch) => {
 
 	if (response.ok) {
 		const data = await response.json();
+		// console.log(data);
 		dispatch(setUser(data));
 		// dispatch(getUserProducts())
-		// dispatch(getAllCartItemsThunk())
+		// dispatch(getAllCartItems())
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
@@ -79,21 +80,22 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (firstName, email, password) => async (dispatch) => {
+export const signUp = (email, firstName, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			firstName,
 			email,
+			firstName,
 			password,
 		}),
 	});
 
 	if (response.ok) {
 		const data = await response.json();
+		// console.log(data);
 		dispatch(setUser(data));
 		return null;
 	} else if (response.status < 500) {
