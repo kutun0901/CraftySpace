@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 review_routes = Blueprint("reviews", __name__)
 
 
-@review_routes.route('/<int:id>', method=['PUT'])
+@review_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_review(id):
     data = request.get_json()
