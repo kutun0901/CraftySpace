@@ -119,6 +119,11 @@
   background-color: #fff;
 }
 
+.fa-hat-wizard:hover {
+  color: #f15b5b;
+  cursor: pointer;
+}
+
 nav ul.profile-dropdown {
   position: absolute;
   top: 60px;
