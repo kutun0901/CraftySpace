@@ -112,10 +112,20 @@ def delete_a_product(id):
     product = Product.query.get(id)
 
     if not product:
-        return {'errors': ['Product could not be found']}
+        return {'errors': ['Product could not be found']}, 404
     elif current_user.id != product.user_id:
         return {'errors': ['You are not authorized to delete this product']}
     else:
         db.session.delete(product)
         db.session.commit()
         return {"message": "Successfully removed"}
+
+
+@product_routes.route('/<int:id>/reviews')
+def get_product_reviews(id):
+    product = Product.query.get(id)
+
+    if not product:
+        return {'errors': ['Product could not be found']}, 404
+    else:
+        return {"id": id, "reviews": [review.to_dict() for review in product.reviews]}
