@@ -16,9 +16,9 @@ function LandingPage() {
 
     const productsArr = Object.values(products)
 
-    useEffect(async () => {
-        await dispatch(getAllProductsThunk())
-        await dispatch(getAllCategoriesThunk())
+    useEffect(() => {
+         dispatch(getAllProductsThunk())
+        dispatch(getAllCategoriesThunk())
     }, [dispatch])
 
     return (

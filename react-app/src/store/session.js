@@ -92,7 +92,7 @@ export const signUp = (email, firstName, password) => async (dispatch) => {
 			password,
 		}),
 	});
-
+	console.log(firstName);
 	if (response.ok) {
 		const data = await response.json();
 		// console.log(data);
