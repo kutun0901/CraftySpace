@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Product, db, ProductImage
+from app.models import Product, db, ProductImage, Review
 from app.forms.product_form import ProductForm
+from app.forms.review_form import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 
 product_routes = Blueprint("products", __name__)
@@ -129,3 +130,32 @@ def get_product_reviews(id):
         return {'errors': ['Product could not be found']}, 404
     else:
         return {"id": id, "reviews": [review.to_dict() for review in product.reviews]}
+
+
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def create_new_review(id):
+    data = request.get_json()
+    form = ReviewForm()
+    # Get the csrf_token from the request cookie and put it into the
+    # form manually to validate_on_submit can be used
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    # make sure the comment form validates
+    if form.validate_on_submit():
+        product = Product.query.get(id)
+        if not product:
+            return { 'errors': ["Product could not be found"] }
+
+        new_review = Review(
+            user_id = current_user.id,
+            product_id = id,
+            rating = data['rating'],
+            comment = data["comment"]
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+        return {"id": id, "review": new_review.to_dict()}, 201
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
