@@ -15,6 +15,9 @@ function ProductDetails() {
     const [quantity, setQuantity] = useState(1);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const sessionUser = useSelector(state => state.session.user);
+    const inCartItems = useSelector(state => state.cart)
+
+    const inCartItemsArr = Object.values(inCartItems)
 
     useEffect(() => {
         dispatch(getSingleProductThunk(id));
@@ -22,16 +25,27 @@ function ProductDetails() {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-        if (!sessionUser) return window.alert('Log in required for purchasing this product')
+        if (!sessionUser) return window.alert('Log in required for purchasing this product');
+
+        const inCartQuantity = inCartItemsArr.reduce((total, item) => {
+          if (item.product_id === product.id) {
+            return total + item.quantity;
+          }
+          return total;
+        }, 0);
+
+        if (inCartQuantity + Number(quantity) > product.quantity) {
+          return window.alert('The maximum available quantity for this product is ' + product.quantity);
+        }
 
         const item = {
-            user_id: sessionUser.id,
-            product_id: product.id,
-            quantity: Number(quantity)
+          user_id: sessionUser.id,
+          product_id: product.id,
+          quantity: Number(quantity)
         };
         await dispatch(addItemToCartThunk(item));
-        history.push('/cart')
-    };
+        history.push('/cart');
+      };
 
     if (!product) {
         return null;
