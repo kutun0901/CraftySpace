@@ -99,11 +99,11 @@ function ProductDetails() {
                         {reviews && reviews.length === 0 ? 'Be the first to review!' : 'Reviews'}
                     </div>
                     <div className="reviews-container">
-                        {/* <div className="post-button">
-                        {reviews.find(review => review.userId === sessionUser.id) && (
-                            <OpenModalButton className="post-review-button" modalComponent={<PostReviewModal productId={product.id} reviewId={reviews.find(review => review.userId === sessionUser.id)} />} buttonText="Post Your Review" />
-                        )}
-                    </div> */}
+                        <div className="post-button">
+                            {reviews && !reviews.find(review => review.userId === sessionUser.id) && (
+                                <OpenModalButton className="post-review-button" modalComponent={<PostReviewModal productId={product.id} reviewId={reviews.find(review => review.userId === sessionUser.id)} />} buttonText="Post Your Review" />
+                            )}
+                        </div>
                         <div className="reviews-display">
                             {reviews && reviews.map(review => {
                                 // console.log(review, "================", review.id);
@@ -157,11 +157,11 @@ function ProductDetails() {
                                     </div>
                                 )
                             })}
-                            <OpenModalButton
+                            {/* <OpenModalButton
                                 className='post_comment_button'
                                 buttonText='Review'
                                 modalComponent={<PostReviewModal productId={id} />}
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>

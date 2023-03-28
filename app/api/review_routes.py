@@ -26,7 +26,7 @@ def update_review(id):
         review.comment = data["comment"]
         review.updated_at = datetime.now(timezone.utc)
         db.session.commit()
-        return {"id": review.product.id, "comment":review.to_dict() }, 200
+        return {"id": review.product.id, "review":review.to_dict() }, 200
 
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401

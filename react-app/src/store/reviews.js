@@ -109,7 +109,7 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_REVIEWS: {
             const newState = {...state};
             newState[action.payload.id] = action.payload.reviews;
-            console.log("************",action.payload.reviews);
+            // console.log("************",action.payload.reviews);
             return newState
         }
         case CREATE_REVIEW: {
@@ -120,14 +120,15 @@ export default function reducer(state = initialState, action) {
         case UPDATE_REVIEW: {
             const newState = {...state}
             newState[action.payload.id] = [ ...state[action.payload.id] ]
-            const reviewIndex = newState[action.payload.id].findIndex(review => review.id === action.payload.review.id);
+            console.log("-------------", newState);
+            const reviewIndex = newState[action.payload.id].findIndex(review => review.id === action.payload.id);
             newState[action.payload.id].splice(reviewIndex, 1, action.payload.review)
             return newState
         }
         case DELETE_REVIEW: {
             const newState = { ...state };
             newState[action.productId] = [ ...state[action.productId] ]
-            const reviewIndex = newState[action.reviewId].findIndex(review => review.id === action.reviewId);
+            const reviewIndex = newState[action.productId].findIndex(review => review.id === action.reviewId);
             newState[action.productId].splice(reviewIndex, 1)
             return newState;
         }

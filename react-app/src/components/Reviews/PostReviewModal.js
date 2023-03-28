@@ -38,7 +38,7 @@ function PostReviewModal({ productId, reviewId }) {
         } else {
             data = await dispatch(createReviewThunk(productId, payload))
         }
-        console.log("==============", data);
+        // console.log("==============", data);
 
         if (data) {
             setValidationErrors(data)
