@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { getSingleProductThunk } from "../../store/products";
 import { deleteReviewThunk } from "../../store/reviews";
 // import { getSingleProductThunk } from "../../store/products";
 
@@ -15,6 +16,7 @@ function DeleteReviewModal({ review }) {
         if (data) {
             setErrors(data);
         } else {
+            dispatch(getSingleProductThunk(review.productId))
             closeModal()
         }
     }

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { getSingleProductThunk } from "../../store/products";
 // import { getSingleProductThunk } from "../../store/products";
 import { createReviewThunk, updateReviewThunk } from "../../store/reviews";
+import "./PostReviewModal.css"
+
 
 function PostReviewModal({ productId, reviewId }) {
 
@@ -39,7 +42,7 @@ function PostReviewModal({ productId, reviewId }) {
             data = await dispatch(createReviewThunk(productId, payload))
         }
         // console.log("==============", data);
-
+        dispatch(getSingleProductThunk(productId))
         if (data) {
             setValidationErrors(data)
         } else {
