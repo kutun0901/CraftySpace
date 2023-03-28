@@ -106,7 +106,7 @@ function ProductDetails() {
                     </div> */}
                         <div className="reviews-display">
                             {reviews && reviews.map(review => {
-                                console.log(review, "================", review.id);
+                                // console.log(review, "================", review.id);
                                 return (
                                     <div key={review.id} className='review_div'>
                                         {sessionUser && sessionUser.id === review.userId && (

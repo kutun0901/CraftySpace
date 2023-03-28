@@ -126,9 +126,9 @@ export default function reducer(state = initialState, action) {
         }
         case DELETE_REVIEW: {
             const newState = { ...state };
-            newState[action.expenseId] = [ ...state[action.expenseId] ]
+            newState[action.productId] = [ ...state[action.productId] ]
             const reviewIndex = newState[action.reviewId].findIndex(review => review.id === action.reviewId);
-            newState[action.expenseId].splice(reviewIndex, 1)
+            newState[action.productId].splice(reviewIndex, 1)
             return newState;
         }
         default: {

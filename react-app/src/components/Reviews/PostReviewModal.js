@@ -15,6 +15,7 @@ function PostReviewModal({ productId, reviewId }) {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
+
     useEffect(() => {
         const error = [];
         if (comment.length < 10) error.push("Comment needs to be at least 10 characters");
@@ -27,7 +28,8 @@ function PostReviewModal({ productId, reviewId }) {
         e.preventDefault();
         setHasSubmitted(true);
         if (validationErrors.length) return alert("Sorry! Check your form again");
-         let data;
+
+        let data;
         const payload = { rating: star, comment };
         if (reviewToUpdate) {
             reviewToUpdate.comment = comment;
@@ -36,9 +38,12 @@ function PostReviewModal({ productId, reviewId }) {
         } else {
             data = await dispatch(createReviewThunk(productId, payload))
         }
+        console.log("==============", data);
 
         if (data) {
-            closeModal();
+            setValidationErrors(data)
+        } else {
+            closeModal()
         }
     };
 
