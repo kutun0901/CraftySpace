@@ -88,11 +88,11 @@ export const signUp = (email, firstName, password) => async (dispatch) => {
 		},
 		body: JSON.stringify({
 			email,
-			firstName,
+			first_name: firstName,
 			password,
 		}),
 	});
-
+	console.log(firstName);
 	if (response.ok) {
 		const data = await response.json();
 		// console.log(data);

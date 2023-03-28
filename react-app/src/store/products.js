@@ -169,7 +169,7 @@ export default function reducer(state = initialState, action) {
             return {...state, allProducts: products}
         }
         case GET_SINGLE_PRODUCT: {
-            console.log(action.payload);
+            // console.log(action.payload);
             return {...state, singleProduct: action.payload}
         }
         case GET_USER_PRODUCTS: {

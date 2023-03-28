@@ -17,9 +17,11 @@ function SignupFormModal() {
 		e.preventDefault();
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(email, firstName, password));
+			console.log(data)
 			if (data) {
 				setErrors(data);
 			} else {
+				// console.log(firstName);
 				closeModal();
 			}
 		} else {

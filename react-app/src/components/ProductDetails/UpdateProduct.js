@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getAllCategoriesThunk } from "../../store/categories";
-import { getSingleProduct, getUserProductsThunk, updateProductThunk } from "../../store/products";
+import { getSingleProductThunk, getUserProductsThunk, updateProductThunk } from "../../store/products";
 import './UpdateProduct.css'
 
 
@@ -13,8 +13,9 @@ function UpdateProduct() {
     const sessionUser = useSelector((state) => state.session.user);
     const categories = useSelector((state) => state.categories);
     const product = useSelector((state) => state.products.userProducts[id])
-
+    // console.log(product);
     const categoriesArr = Object.values(categories);
+    // console.log(categoriesArr)
 
     const [name, setName] = useState("");
     const [images, setImages] = useState([]);
@@ -49,8 +50,9 @@ function UpdateProduct() {
         if (sessionUser) {
             dispatch(getAllCategoriesThunk());
             dispatch(getUserProductsThunk())
+            dispatch(getSingleProductThunk(id))
         }
-    }, [dispatch, sessionUser]);
+    }, [dispatch, sessionUser, id]);
 
     useEffect(() => {
         let e = {};
