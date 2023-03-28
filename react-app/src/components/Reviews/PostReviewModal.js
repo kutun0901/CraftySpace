@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { getSingleProductThunk } from "../../store/products";
-import { createReviewThunk, getAllReviewsThunk } from "../../store/reviews";
+// import { getSingleProductThunk } from "../../store/products";
+import { createReviewThunk, updateReviewThunk } from "../../store/reviews";
 
-function PostReviewModal({ productId }) {
+function PostReviewModal({ productId, reviewId }) {
+
+    const reviewToUpdate = useSelector(state => state.reviews[productId].find(review => review.id === reviewId))
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const [comment, setComment] = useState("");
-    const [star, setStar] = useState(0);
+    const [comment, setComment] = useState(reviewToUpdate ? reviewToUpdate.comment : "");
+    const [star, setStar] = useState(reviewToUpdate ? reviewToUpdate.rating : 0);
     const [hover, setHover] = useState(0);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -25,13 +27,17 @@ function PostReviewModal({ productId }) {
         e.preventDefault();
         setHasSubmitted(true);
         if (validationErrors.length) return alert("Sorry! Check your form again");
-
+         let data;
         const payload = { rating: star, comment };
-        const newReview = await dispatch(createReviewThunk(payload, spotId))
-        await dispatch(getAllReviewsThunk(spotId));
-        await dispatch(getSingleProductThunk(spotId))
+        if (reviewToUpdate) {
+            reviewToUpdate.comment = comment;
+            reviewToUpdate.rating = star;
+            data = await dispatch(updateReviewThunk(reviewToUpdate))
+        } else {
+            data = await dispatch(createReviewThunk(productId, payload))
+        }
 
-        if (newReview) {
+        if (data) {
             closeModal();
         }
     };
@@ -55,7 +61,7 @@ function PostReviewModal({ productId }) {
                     type="text"
                     className="comment-input"
                     placeholder="Leave your review here..."
-                    value={review}
+                    value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 ></textarea>
             </div>
@@ -80,7 +86,7 @@ function PostReviewModal({ productId }) {
             </div>
             <div>
                 <button onClick={postHandler} type="submit" disabled={validationErrors.length > 0}>
-                    Submit Your Review
+                    {!!reviewToUpdate ? "Update review" : "Submit review"}
                 </button>
             </div>
         </div>

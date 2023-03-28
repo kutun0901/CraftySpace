@@ -25,6 +25,7 @@ class Review(db.Model):
             "id": self.id,
             "userId": self.user_id,
             "productId": self.product_id,
+            "user": self.user.to_dict(),
             "rating": self.rating,
             "comment": self.comment,
             "createdAt": self.created_at,

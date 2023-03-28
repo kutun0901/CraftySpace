@@ -25,7 +25,7 @@ export const deleteReview = (productId, reviewId) => ({
 })
 
 export const getAllReviewsThunk = productId => async (dispatch) => {
-    const res = await dispatch(`/api/products/${productId}/reviews`)
+    const res = await fetch(`/api/products/${productId}/reviews`)
 
     if (res.ok) {
         const data = await res.json();
@@ -83,13 +83,13 @@ export const updateReviewThunk = review => async (dispatch) => {
     }
 }
 
-export const deleteReviewThunk = reviewId => async (dispatch) => {
-    const res = await fetch(`/api/reviews/${reviewId}`, {
+export const deleteReviewThunk = review => async (dispatch) => {
+    const res = await fetch(`/api/reviews/${review.id}`, {
         method: "DELETE"
     })
 
     if (res.ok) {
-        dispatch(deleteReview(comment.expenseId, comment.id));
+        dispatch(deleteReview(review.productId, review.id));
         return null
     } else if (res.status < 500) {
         const data = await res.json();
@@ -109,6 +109,7 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_REVIEWS: {
             const newState = {...state};
             newState[action.payload.id] = action.payload.reviews;
+            console.log("************",action.payload.reviews);
             return newState
         }
         case CREATE_REVIEW: {
