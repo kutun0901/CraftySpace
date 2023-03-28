@@ -136,7 +136,7 @@ export default function reducer(state = initialState, action) {
                 newState[newItem.id] = { ...newItem, quantity: Number(newItem.quantity) };
             }
 
-            console.log('newState:', newState);
+            // console.log('newState:', newState);
 
             return newState;
             // const newState = { ...state }

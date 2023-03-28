@@ -100,8 +100,12 @@ function ProductDetails() {
                     </div>
                     <div className="reviews-container">
                         <div className="post-button">
-                            {reviews && !reviews.find(review => review.userId === sessionUser.id) && (
-                                <OpenModalButton className="post-review-button" modalComponent={<PostReviewModal productId={product.id} reviewId={reviews.find(review => review.userId === sessionUser.id)} />} buttonText="Post Your Review" />
+                            {sessionUser && (!reviews || !reviews.find(review => review.userId === sessionUser.id)) && (
+                                <OpenModalButton
+                                    className="post-review-button"
+                                    modalComponent={<PostReviewModal productId={product.id} />}
+                                    buttonText="Post Your Review"
+                                />
                             )}
                         </div>
                         <div className="reviews-display">

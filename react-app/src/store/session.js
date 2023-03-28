@@ -5,7 +5,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-// export const RESET = "reset"
+export const RESET = "reset"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -16,9 +16,9 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-// const reset = () => ({
-// 	type: RESET
-// })
+const reset = () => ({
+	type: RESET
+})
 
 const initialState = { user: null };
 
@@ -76,7 +76,7 @@ export const logout = () => async (dispatch) => {
 
 	if (response.ok) {
 		dispatch(removeUser());
-		// dispatch(reset())
+		dispatch(reset())
 	}
 };
 
@@ -114,8 +114,8 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
-		// case RESET:
-		// 		return initialState
+		case RESET:
+				return initialState
 		default:
 			return state;
 	}
