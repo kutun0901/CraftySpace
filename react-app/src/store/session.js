@@ -1,11 +1,11 @@
 // import { getAllCategories } from "./categories";
 // import { getUserProducts, getUserProductsThunk } from "./products";
 // import { getAllCartItems, getAllCartItemsThunk } from "./shoppingCartItems";
-
+import { reset } from './shoppingCartItems';
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-// export const RESET = "reset"
+export const RESET = "reset"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -76,7 +76,7 @@ export const logout = () => async (dispatch) => {
 
 	if (response.ok) {
 		dispatch(removeUser());
-		// dispatch(reset())
+		dispatch(reset())
 	}
 };
 
