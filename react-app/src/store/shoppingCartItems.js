@@ -128,21 +128,16 @@ export default function reducer(state = initialState, action) {
         case ADD_ITEM_TO_CART: {
             const newItem = action.payload;
             const newState = { ...state };
-            const existingItem = newState[newItem.product_id];
+            const existingItem = newState[newItem.id];
 
             if (existingItem) {
-                existingItem.quantity += Number(newItem.quantity);
+              existingItem.quantity += Number(newItem.quantity);
             } else {
-                newState[newItem.id] = { ...newItem, quantity: Number(newItem.quantity) };
+              newState[newItem.id] = { ...newItem, quantity: Number(newItem.quantity) };
             }
 
-            // console.log('newState:', newState);
-
             return newState;
-            // const newState = { ...state }
-            // newState[action.payload.id] = action.payload
-            // return newState
-        }
+          }
         case UPDATE_CART: {
             const newState = { ...state }
             newState[action.payload.id].quantity = action.payload.quantity
