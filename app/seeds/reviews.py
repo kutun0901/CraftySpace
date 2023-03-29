@@ -42,7 +42,37 @@ def seed_reviews():
             "product_id": 5,
             "rating": 3,
             "comment": fake.sentence()
-        }
+        },
+        {
+            "user_id": 1,
+            "product_id": 6,
+            "rating": 5,
+            "comment": fake.sentence()
+        },
+        {
+            "user_id": 4,
+            "product_id": 7,
+            "rating": 4,
+            "comment": fake.sentence()
+        },
+        {
+            "user_id": 1,
+            "product_id": 8,
+            "rating": 5,
+            "comment": fake.sentence()
+        },
+        {
+            "user_id": 4,
+            "product_id": 9,
+            "rating": 4,
+            "comment": fake.sentence()
+        },
+        {
+            "user_id": 3,
+            "product_id": 11,
+            "rating": 3,
+            "comment": fake.sentence()
+        },
     ]
 
     for review_data in reviews:

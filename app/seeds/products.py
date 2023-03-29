@@ -9,52 +9,92 @@ def seed_products():
 
     products = [
         {
-            "name": "Shirt",
+            "name": "Unicorn Wand",
             "description": fake.sentence(),
-            "price": 44.00,
+            "price": 1444.00,
             "quantity": 10,
             "category_id": 1,
             "user_id": 1
         },
         {
-            "name": "Rocking chair",
+            "name": "The Standard Book of Spells",
             "description": fake.sentence(),
             "price": 140.00,
             "quantity": 5,
             "category_id": 2,
-             "user_id": 2
+            "user_id": 2
         },
         {
-            "name": "Corgi painting",
+            "name": "Corgi Witch Painting",
             "description": fake.sentence(),
             "price": 499.99,
             "quantity": 3,
-            "category_id": 3,
+            "category_id": 5,
             "user_id": 3
         },
         {
-            "name": "Harry Potter lego set",
+            "name": "Pet Toad",
             "description": fake.sentence(),
-            "price": 149.99,
+            "price": 249.99,
             "quantity": 23,
-            "category_id": 4,
+            "category_id": 3,
             "user_id": 1
         },
         {
-            "name": "Witch Bloom",
+            "name": "Tawny Owl",
             "description": fake.sentence(),
             "price": 29.99,
             "quantity": 10,
+            "category_id": 3,
+            "user_id": 2
+        },
+        {
+            "name": "Hogwarts School Robes",
+            "description": fake.sentence(),
+            "price": 179.99,
+            "quantity": 12,
+            "category_id": 4,
+            "user_id": 3
+        },
+        {
+            "name": "Dark Wizard Hat",
+            "description": fake.sentence(),
+            "price": 129.99,
+            "quantity": 15,
             "category_id": 4,
             "user_id": 2
         },
         {
-            "name": "Crystal necklace",
+            "name": "Aspen and Unicorn Hair Wand",
             "description": fake.sentence(),
-            "price": 79.99,
-            "quantity": 12,
+            "price": 63.99,
+            "quantity": 14,
+            "category_id": 1,
+            "user_id": 3
+        },
+        {
+            "name": "Nimbus 2001",
+            "description": fake.sentence(),
+            "price": 499.99,
+            "quantity": 14,
             "category_id": 5,
             "user_id": 3
+        },
+        {
+            "name": "Quaffle Ball",
+            "description": fake.sentence(),
+            "price": 99.49,
+            "quantity": 10,
+            "category_id": 5,
+            "user_id": 1
+        },
+        {
+            "name": "Mandrake Root",
+            "description": fake.sentence(),
+            "price": 19.99,
+            "quantity": 10,
+            "category_id": 3,
+            "user_id": 4
         }
     ]
 

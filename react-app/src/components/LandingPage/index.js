@@ -17,7 +17,7 @@ function LandingPage() {
     const productsArr = Object.values(products)
 
     useEffect(() => {
-         dispatch(getAllProductsThunk())
+        dispatch(getAllProductsThunk())
         dispatch(getAllCategoriesThunk())
     }, [dispatch])
 
@@ -57,7 +57,11 @@ function LandingPage() {
                         <NavLink to={`/products/${product.id}`}>
                             <img src={product.images ? product.images[0] : null} alt={product.title} />
                             <h4>{product.name}</h4>
-                            <p><i className="fa-solid fa-star"></i> {product.avgRating.toFixed(1)} </p>
+                            {product.avgRating ? (
+                                <p><i className="fa-solid fa-star"></i> {product.avgRating.toFixed(1)}</p>
+                            ) : (
+                                <p><i className="fa-solid fa-star"></i> New</p>
+                            )}
                             <p>{product.price.toFixed(2)}</p>
                             <p>{product.description}</p>
                         </NavLink>
