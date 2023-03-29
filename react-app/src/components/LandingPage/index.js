@@ -63,7 +63,7 @@ function LandingPage() {
                             {product.avgRating ? (
                                 <p><i className="fa-solid fa-star"></i> {product.avgRating.toFixed(1)}</p>
                             ) : (
-                                <p><i className="fa-solid fa-star"></i> New</p>
+                                <p><i className="fa-solid fa-star"></i> No ratings yet</p>
                             )}
                             <p>{product.description}</p>
                         </NavLink>

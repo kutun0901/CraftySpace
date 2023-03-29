@@ -81,33 +81,35 @@ function ProductDetails() {
                     <button onClick={() => setCurrentImageIndex(currentImageIndex - 1)} disabled={currentImageIndex === 0}>Previous</button>
                     <button onClick={() => setCurrentImageIndex(currentImageIndex + 1)} disabled={currentImageIndex === (product.images?.length ?? 0) - 1}>Next</button>
                 </div>
-                <div className="review-container">
-                    <div>
-                        <p>{reviews ? reviews.length : 0} reviews</p>
-                        <p>
+                <div className="review-container-wrapper">
+                    <div className="star-review-container">
+                        <span>{reviews ? reviews.length : 0} reviews</span>
+                        <span>
                             {reviews && reviews.length === 0 ? (
                                 <span><i className="fa-solid fa-star"></i> New</span>
                             ) : (
                                 <span>
-                                    <i className="fa-solid fa-star"></i>
-                                    {parseFloat(product.avgRating).toFixed(1)}
+                                    <i className="fa-solid fa-star"></i> {parseFloat(product.avgRating).toFixed(1)}
                                 </span>
                             )}
-                        </p>
+                        </span>
                     </div>
-                    <div className={`reviews_heading ${reviews && reviews.length === 0 ? 'no_reviews_heading' : ''}`}>
-                        {reviews && reviews.length === 0 ? 'Be the first to review!' : 'Reviews'}
+                    <div className="review-top-container">
+                        <div className={`reviews_heading ${reviews && reviews.length === 0 ? 'no_reviews_heading' : ''}`}>
+                            {reviews && reviews.length === 0 ? <p className="review-headings">Be the first to review!</p> : <p className="review-headings">Reviews</p>}
+                        </div>
+                        <div className="post-button">
+                                {sessionUser && (!reviews || !reviews.find(review => review.userId === sessionUser.id)) && (
+                                    <OpenModalButton
+                                        className="post-review-button"
+                                        modalComponent={<PostReviewModal productId={product.id} />}
+                                        buttonText="Post Your Review"
+                                    />
+                                )}
+                            </div>
                     </div>
                     <div className="reviews-container">
-                        <div className="post-button">
-                            {sessionUser && (!reviews || !reviews.find(review => review.userId === sessionUser.id)) && (
-                                <OpenModalButton
-                                    className="post-review-button"
-                                    modalComponent={<PostReviewModal productId={product.id} />}
-                                    buttonText="Post Your Review"
-                                />
-                            )}
-                        </div>
+
                         <div className="reviews-display">
                             {reviews && reviews.map(review => {
                                 // console.log(review, "================", review.id);
