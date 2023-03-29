@@ -1,0 +1,65 @@
+.delete-review-container {
+  display: flex;
+  width: 550px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.delete-review-container .confirm-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.delete-review-container p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.delete-review-container .delete_errors_list {
+  color: red;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.delete-review-container .action-button-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.delete-review-container button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.delete-review-container .yes {
+  background-color: #fff;
+  color: #eedabf;
+  border: 2px solid #eedabf;
+}
+
+.delete-review-container .yes:hover {
+  background-color: #eedabf;
+  color: #fff;
+}
+
+.delete-review-container .no {
+  background-color: #eedabf;
+  color: #fff;
+  border: none;
+}
+
+.delete-review-container .no:hover {
+  background-color: #fff;
+  color: #eedabf;
+  border: 2px solid #eedabf;
+}
