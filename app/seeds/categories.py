@@ -4,18 +4,18 @@ from sqlalchemy.sql import text
 
 
 def seed_categories():
-    clothing = Category( name="Clothing and Shoes")
-    home = Category( name="Home")
-    arts = Category( name="Arts")
-    toys = Category( name="Toys")
-    jewelry = Category( name="Jewelry")
+    wands = Category( name="Wands")
+    textbooks = Category( name="Spell TextBooks")
+    creatures = Category( name="Magical Creatures")
+    fashion = Category( name="Fashion")
+    equipments = Category( name="Equipments")
 
 
-    db.session.add(clothing)
-    db.session.add(home)
-    db.session.add(arts)
-    db.session.add(toys)
-    db.session.add(jewelry)
+    db.session.add(wands)
+    db.session.add(textbooks)
+    db.session.add(creatures)
+    db.session.add(fashion)
+    db.session.add(equipments)
 
     db.session.commit()
 
