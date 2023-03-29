@@ -9,9 +9,9 @@ def seed_products():
 
     products = [
         {
-            "name": "Unicorn Wand",
+            "name": "Vine Wood Wand",
             "description": fake.sentence(),
-            "price": 1444.00,
+            "price": 350.00,
             "quantity": 10,
             "category_id": 1,
             "user_id": 1
@@ -43,7 +43,7 @@ def seed_products():
         {
             "name": "Tawny Owl",
             "description": fake.sentence(),
-            "price": 29.99,
+            "price": 2999.99,
             "quantity": 10,
             "category_id": 3,
             "user_id": 2
@@ -67,7 +67,7 @@ def seed_products():
         {
             "name": "Aspen and Unicorn Hair Wand",
             "description": fake.sentence(),
-            "price": 63.99,
+            "price": 638.99,
             "quantity": 14,
             "category_id": 1,
             "user_id": 3
@@ -75,7 +75,7 @@ def seed_products():
         {
             "name": "Nimbus 2001",
             "description": fake.sentence(),
-            "price": 499.99,
+            "price": 999.99,
             "quantity": 14,
             "category_id": 5,
             "user_id": 3
@@ -83,7 +83,7 @@ def seed_products():
         {
             "name": "Quaffle Ball",
             "description": fake.sentence(),
-            "price": 99.49,
+            "price": 199.49,
             "quantity": 10,
             "category_id": 5,
             "user_id": 1
