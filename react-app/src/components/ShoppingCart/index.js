@@ -18,10 +18,12 @@ const ShoppingCart = () => {
   if (!sessionUser) return <Redirect to='/' />
 
   const handleQuantityChange = (item, quantity) => {
-    if (quantity <= item.product.quantity) {
+    if (quantity <= 0) {
+      dispatch(removeItemThunk(item.id));
+    } else if (quantity <= item.product.quantity) {
       dispatch(updateCartThunk({ ...item, quantity }));
     } else {
-      return window.alert("Item is out of stock. Please check back later.")
+      window.alert("Item is out of stock. Please check back later.");
     }
   };
 
