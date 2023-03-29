@@ -109,3 +109,105 @@
     color: #eedabf;
     border: 2px solid #eedabf;
   }
+
+
+  .star-review-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  .review-top-container{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .review-top-container .post-button{
+    display: flex;
+    align-items: center;
+  }
+
+  .post-button button{
+    padding: 10px 5px;
+    border-radius: 5px;
+    background-color: #eedabf;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .post-button button:hover{
+    color: #eedabf;
+    background-color: #fff;
+    border: 1px solid #eedabf;
+  }
+
+
+
+  .review-headings {
+    font-weight: bold;
+  }
+
+
+  .reviews-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .review_div {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .comment_edit_delete_buttons_div {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .edit_review_button,
+  .remove_review_button {
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+  }
+
+  .edit_review_button:hover,
+  .remove_review_button:hover {
+    color: #333;
+  }
+
+  .review_wrapper_with_buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comment {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .comment_details_div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .comment_author {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #d8c4ab;
+  }
+
+  .comment_timestamp_div {
+    display: flex;
+    flex-direction: column;
+  }

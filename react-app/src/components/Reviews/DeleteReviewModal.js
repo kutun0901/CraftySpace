@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getSingleProductThunk } from "../../store/products";
 import { deleteReviewThunk } from "../../store/reviews";
-// import { getSingleProductThunk } from "../../store/products";
+import './DeleteReviewModal.css'
+
 
 function DeleteReviewModal({ review }) {
 
@@ -32,11 +33,13 @@ function DeleteReviewModal({ review }) {
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
+            <div className="action-button-container">
             <div>
                 <button className="no" onClick={closeModal}>Cancel</button>
             </div>
             <div>
                 <button className="yes" onClick={deleteHandler}>Delete</button>
+            </div>
             </div>
         </div>
     )
