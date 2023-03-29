@@ -55,14 +55,16 @@ function LandingPage() {
                 {productsArr.map((product) => (
                     <div key={product.id} className="product">
                         <NavLink to={`/products/${product.id}`}>
-                            <img src={product.images ? product.images[0] : null} alt={product.title} />
+                            <div className="image-container">
+                                <img src={product.images ? product.images[0] : null} alt={product.title} />
+                                <p className="price">${product.price.toFixed(2)}</p>
+                            </div>
                             <h4>{product.name}</h4>
                             {product.avgRating ? (
                                 <p><i className="fa-solid fa-star"></i> {product.avgRating.toFixed(1)}</p>
                             ) : (
                                 <p><i className="fa-solid fa-star"></i> New</p>
                             )}
-                            <p>{product.price.toFixed(2)}</p>
                             <p>{product.description}</p>
                         </NavLink>
                     </div>

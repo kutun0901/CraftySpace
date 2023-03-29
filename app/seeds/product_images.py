@@ -26,10 +26,6 @@ def seed_product_images():
             "image_url": "https://i.pinimg.com/originals/a1/bb/8e/a1bb8e943d04d33e1a0b4737c1ba285c.jpg"
         },
         {
-            "product_id": 2,
-            "image_url": "https://i.imgur.com/fkPUYGF.jpeg"
-        },
-          {
             "product_id": 3,
             "image_url": "https://i.imgur.com/L8Kdhxn.png"
         },
