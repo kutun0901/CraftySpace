@@ -49,6 +49,9 @@ function App() {
           <Route path="/products/:id">
             <ProductDetails />
           </Route>
+          <Route path="*">
+            <p style={{ paddingTop: "10px" }}>Page Not Found</p>
+          </Route>
         </Switch>
       )}
       <Footer />

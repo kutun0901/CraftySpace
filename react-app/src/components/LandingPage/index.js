@@ -21,6 +21,12 @@ function LandingPage() {
         dispatch(getAllCategoriesThunk())
     }, [dispatch])
 
+    const topRatedProducts = productsArr
+        .filter(product => product.avgRating)
+        .sort((a, b) => b.avgRating - a.avgRating)
+        .slice(0, 4);
+
+
     return (
         <div>
             <div className="header-container">
@@ -51,6 +57,24 @@ function LandingPage() {
                     </div>
                 ))}
             </div>
+            <div className="top-rated-products">
+                <div>
+                    <h3 className="top-rated">Top rated products:</h3>
+                </div>
+                {topRatedProducts.map((topProduct) => (
+                    <div key={topProduct.id} className="product">
+                        <NavLink to={`/products/${topProduct.id}`}>
+                            <div className="image-container">
+                                <img src={topProduct.images ? topProduct.images[0] : null} alt={topProduct.title} />
+                                <p className="price">${topProduct.price.toFixed(2)}</p>
+                            </div>
+                            <h4>{topProduct.name}</h4>
+                            <p><i className="fa-solid fa-star"></i> {topProduct.avgRating.toFixed(1)}</p>
+                        </NavLink>
+                    </div>
+                ))}
+            </div>
+            <h3 className="shop-ours">Shop our products</h3>
             <div className="products-container">
                 {productsArr.map((product) => (
                     <div key={product.id} className="product">

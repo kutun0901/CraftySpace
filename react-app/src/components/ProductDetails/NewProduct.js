@@ -195,7 +195,9 @@ function NewProduct() {
             <div className="error">{errors.emptyCategory}</div>
           )}
         </div>
+        <div className="submit-container">
         <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

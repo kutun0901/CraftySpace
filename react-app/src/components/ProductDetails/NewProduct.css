@@ -1,61 +1,74 @@
 .new-product-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 40px;
-    padding-left: 20px;
-  }
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 40px;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  min-height: 930px;
+}
 
-  .new-product-page .form-group {
-    margin-bottom: 20px;
-  }
+.new-product-page .form-group {
+  margin-bottom: 20px;
+}
 
-  .new-product-page label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+.new-product-page label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
-  .new-product-page input[type="text"],
-  .new-product-page textarea,
-  .new-product-page select {
-    width: 96%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
+.new-product-page input[type="text"],
+.new-product-page textarea,
+.new-product-page select {
+  width: 96%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
-  .new-product-page input[type="number"] {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
+.new-product-page input[type="number"] {
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
 
-  .new-product-page button[type="button"],
-  .new-product-page button[type="submit"] {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #eedabf;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
+.new-product-page button[type="button"],
+.new-product-page button[type="submit"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #eedabf;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
-  .new-product-page button[type="button"]:hover,
-  .new-product-page button[type="submit"]:hover {
-    background-color: #cebea8;
-  }
+.new-product-page .submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
 
-  .new-product-page .error {
-    color: red;
-    margin-top: 5px;
-  }
+.new-product-page button[type="submit"]:hover {
+  background-color: #fff;
+  color: #eedabf;
+  border: 2px solid #eedabf;
+}
+
+.new-product-page button[type="button"]:hover {
+  background-color: #cebea8;
+}
+
+.new-product-page .error {
+  color: red;
+  margin-top: 5px;
+}

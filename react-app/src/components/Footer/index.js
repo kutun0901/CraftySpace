@@ -4,7 +4,7 @@ import './Footer.css'
 function Footer() {
     return (
             <div className="footer-container">
-                <div className="contact me">
+                <div className="contact-me">
                     <h4>Contact me:</h4>
                     <p>Email: tuan.tq2433@gmail.com</p>
                 </div>

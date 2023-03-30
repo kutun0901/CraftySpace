@@ -37,6 +37,10 @@ const ShoppingCart = () => {
     total += singleItemAmount
   }
 
+  const handleOrder = () => {
+    return window.alert("upcoming feature")
+}
+
 
   return (
     <div className='shopping-cart-container'>
@@ -78,7 +82,7 @@ const ShoppingCart = () => {
         </div>
         <div className='items-total-container'>
           <p className='items-total'>Item(s) total: ${total.toFixed(2)}</p>
-          <button className='pay-button'>Pay</button>
+          <button className='pay-button' onClick={handleOrder}>Pay</button>
         </div>
       </div>
     </div>

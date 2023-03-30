@@ -55,7 +55,7 @@ function ProductDetails() {
     };
 
     if (!product) {
-        return null;
+        return <p>Product not found</p>;
     }
 
     return (
