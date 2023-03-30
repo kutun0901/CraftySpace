@@ -16,13 +16,15 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(email, firstName, password));
-			console.log(data)
-			if (data) {
-				setErrors(data);
+			if (password.length < 6) {
+				setErrors(["Password must be at least 6 characters long"]);
 			} else {
-				// console.log(firstName);
-				closeModal();
+				const data = await dispatch(signUp(email, firstName, password));
+				if (data) {
+					setErrors(data);
+				} else {
+					closeModal();
+				}
 			}
 		} else {
 			setErrors([
@@ -33,59 +35,59 @@ function SignupFormModal() {
 
 	return (
 		<div className="signup-modal-container">
-		  <h1 className="signup-modal-heading">Sign Up</h1>
-		  <form className="signup-modal-form" onSubmit={handleSubmit}>
-			<ul className="signup-modal-errors">
-			  {errors.map((error, idx) => (
-				<li key={idx}>{error}</li>
-			  ))}
-			</ul>
-			<label className="signup-modal-label">
-			  Email
-			  <input
-				type="email"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-				className="signup-modal-input"
-				required
-			  />
-			</label>
-			<label className="signup-modal-label">
-			  First Name
-			  <input
-				type="text"
-				value={firstName}
-				onChange={(e) => setFirstName(e.target.value)}
-				className="signup-modal-input"
-				required
-			  />
-			</label>
-			<label className="signup-modal-label">
-			  Password
-			  <input
-				type="password"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-				className="signup-modal-input"
-				required
-			  />
-			</label>
-			<label className="signup-modal-label">
-			  Confirm Password
-			  <input
-				type="password"
-				value={confirmPassword}
-				onChange={(e) => setConfirmPassword(e.target.value)}
-				className="signup-modal-input"
-				required
-			  />
-			</label>
-			<button type="submit" className="signup-modal-button">
-			  Sign Up
-			</button>
-		  </form>
+			<h1 className="signup-modal-heading">Sign Up</h1>
+			<form className="signup-modal-form" onSubmit={handleSubmit}>
+				<ul className="signup-modal-errors">
+					{errors.map((error, idx) => (
+						<li key={idx}>{error}</li>
+					))}
+				</ul>
+				<label className="signup-modal-label">
+					Email
+					<input
+						type="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						className="signup-modal-input"
+						required
+					/>
+				</label>
+				<label className="signup-modal-label">
+					First Name
+					<input
+						type="text"
+						value={firstName}
+						onChange={(e) => setFirstName(e.target.value)}
+						className="signup-modal-input"
+						required
+					/>
+				</label>
+				<label className="signup-modal-label">
+					Password
+					<input
+						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						className="signup-modal-input"
+						required
+					/>
+				</label>
+				<label className="signup-modal-label">
+					Confirm Password
+					<input
+						type="password"
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
+						className="signup-modal-input"
+						required
+					/>
+				</label>
+				<button type="submit" className="signup-modal-button">
+					Sign Up
+				</button>
+			</form>
 		</div>
-	  );
-	}
+	);
+}
 
-	export default SignupFormModal;
+export default SignupFormModal;

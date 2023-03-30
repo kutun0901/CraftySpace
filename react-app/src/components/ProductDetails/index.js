@@ -99,14 +99,14 @@ function ProductDetails() {
                             {reviews && reviews.length === 0 ? <p className="review-headings">Be the first to review!</p> : <p className="review-headings">Reviews</p>}
                         </div>
                         <div className="post-button">
-                                {sessionUser && (!reviews || !reviews.find(review => review.userId === sessionUser.id)) && (
-                                    <OpenModalButton
-                                        className="post-review-button"
-                                        modalComponent={<PostReviewModal productId={product.id} />}
-                                        buttonText="Post Your Review"
-                                    />
-                                )}
-                            </div>
+                            {sessionUser && sessionUser.id !== product.user_id && (!reviews || !reviews.find(review => review.userId === sessionUser.id)) && (
+                                <OpenModalButton
+                                    className="post-review-button"
+                                    modalComponent={<PostReviewModal productId={product.id} />}
+                                    buttonText="Post Your Review"
+                                />
+                            )}
+                        </div>
                     </div>
                     <div className="reviews-container">
 

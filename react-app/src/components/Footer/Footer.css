@@ -1,0 +1,45 @@
+
+.footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2f466c;
+    color: #fff;
+    padding: 0px 10px 20px;
+    margin-left: 8px;
+}
+
+.contact {
+    margin-left: 20px;
+}
+
+.contact h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.contact p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.project-repo,
+.linkedin-profile {
+    font-size: 1.5rem;
+}
+
+.contact_us_github_icon,
+.contact_us_linkedin_icon {
+    color: #fff;
+    margin-right: 20px;
+}
+
+.contact_us_github_icon:hover,
+.contact_us_linkedin_icon:hover {
+    color: #f1c40f;
+    cursor: pointer;
+}

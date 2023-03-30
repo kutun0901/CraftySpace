@@ -70,6 +70,30 @@ function LandingPage() {
                     </div>
                 ))}
             </div>
+            <div className="about-us">
+                <h4>What is CraftySpace</h4>
+                <p className="about-us-p">Read our wonderfully weird story</p>
+                <div className="introduction">
+                    <div>
+                        <p>Our website is an Etsy clone, offering a wide selection of items ranging from handmade crafts to licensed
+                            merchandise. a unique online shopping experience where you can find all kinds of merchandise inspired by Harry Porter magical world.</p>
+                    </div>
+                    <div>
+                        <p>
+                            We understand the passion that Harry Potter fans have for the series, and our marketplace is designed to provide a one-stop-shop for all your wizarding needs.
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Our goal is to create a community of like-minded individuals who share a love for Harry Potter, and we strive to offer products that are of high quality and affordable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="blue-div">
+                    <p><i className="fa-solid fa-seedling"></i> Etsy clone 2023</p>
+            </div>
+
         </div>
 
     )
