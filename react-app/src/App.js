@@ -11,6 +11,7 @@ import ProductDetails from "./components/ProductDetails";
 import NewProduct from "./components/ProductDetails/NewProduct";
 import UpdateProduct from "./components/ProductDetails/UpdateProduct";
 import ShoppingCart from "./components/ShoppingCart";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
