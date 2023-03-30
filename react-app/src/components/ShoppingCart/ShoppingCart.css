@@ -2,6 +2,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    min-height: 1005px;
 }
 
 .shopping-cart-title {
@@ -113,19 +114,4 @@
     border: solid 2px #eedabf;
     color: #eedabf;
     border-radius: 5px;
-}
-
-@media screen and (max-width: 768px) {
-    .cart-items-wrapper {
-        flex-direction: column;
-    }
-
-    .cart-item-container {
-        flex-basis: 100%;
-    }
-
-    .items-total-container {
-        margin-top: 20px;
-        align-self: flex-start;
-    }
 }

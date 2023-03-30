@@ -225,7 +225,9 @@ function UpdateProduct() {
                     </select>
                     {hasSubmitted && errors.emptyCategory && (<div className="error">{errors.emptyCategory}</div>)}
                 </div>
-                <button type="submit">Update</button>
+                <div className="submit-container">
+                    <button type="submit">Update</button>
+                </div>
             </form>
         </div>
     );

@@ -1,6 +1,7 @@
 .user-listing {
     margin: 0 auto;
     max-width: 800px;
+    min-height: 1025px;
   }
 
   .user-listing-header {

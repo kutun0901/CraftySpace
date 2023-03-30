@@ -6,6 +6,8 @@
     border-radius: 5px;
     margin-top: 40px;
     padding-left: 20px;
+    margin-bottom: 40px;
+    min-height: 930px;
   }
 
   .update-product-page .form-group {
@@ -50,8 +52,19 @@
     margin-bottom: 5px;
   }
 
-  .update-product-page button[type="button"]:hover,
+  .update-product-page .submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
   .update-product-page button[type="submit"]:hover {
+    background-color: #fff;
+    color: #eedabf;
+    border: 2px solid #eedabf;
+  }
+
+  .update-product-page button[type="button"]:hover{
     background-color: #cebea8;
   }
 
