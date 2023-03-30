@@ -149,7 +149,7 @@ function ProductDetails() {
                                         </div>
                                         <div className='comment_details_div'>
                                             <div className='comment_author'>
-                                                {review.user.firstName}
+                                            <i className="fa-regular fa-user"> </i> {review.user.firstName}
                                             </div>
                                             <div className='comment_timestamp_div'>
                                                 <div className='comment_timestamp'>
