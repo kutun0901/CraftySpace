@@ -68,7 +68,7 @@ Welcome to our Harry Potter-themed store, an online shopping site where you can 
 
 ## Manage product listings page
 
-![Screen Shot 2023-03-31 at 11 17 55 AM](https://user-images.githubusercontent.com/113473441/229198997-f667d8ef-b2ce-4858-9cda-226892cae826.png)
+![Screen Shot 2023-03-31 at 11 22 34 AM](https://user-images.githubusercontent.com/113473441/229199849-8a5938ce-68f0-4a89-a631-a039a765d0c0.png)
 
 
 ## Future Implementation 
