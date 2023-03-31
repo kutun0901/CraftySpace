@@ -120,8 +120,7 @@ export default function reducer(state = initialState, action) {
         case UPDATE_REVIEW: {
             const newState = {...state}
             newState[action.payload.id] = [ ...state[action.payload.id] ]
-            console.log("-------------", newState);
-            const reviewIndex = newState[action.payload.id].findIndex(review => review.id === action.payload.id);
+            const reviewIndex = newState[action.payload.id].findIndex(review => review.id === action.payload.review.id);
             newState[action.payload.id].splice(reviewIndex, 1, action.payload.review)
             return newState
         }
