@@ -150,6 +150,7 @@ function ProductDetails() {
                                         <div className='comment_details_div'>
                                             <div className='comment_author'>
                                             <i className="fa-regular fa-user"> </i> {review.user.firstName}
+                                            <span> rated <i className="fa-solid fa-star"></i> {review.rating}</span>
                                             </div>
                                             <div className='comment_timestamp_div'>
                                                 <div className='comment_timestamp'>
