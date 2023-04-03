@@ -1,6 +1,6 @@
 # CraftySpace
 
-Welcome to our Harry Potter-themed store, an online shopping site where you can find a variety of goods drawn from fantastical imagination universe. Our website, an clone of Etsy, sells a variety of goods, from handcrafted crafts to officially licensed goods. We provide everything you need, including wands, clothing, home decor, and even trendy fashion. Visit our website to learn more: [CraftySpace](https://craftyspace.onrender.com)
+Welcome to my Harry Potter-themed store, an online shopping site where you can find a variety of goods drawn from fantastical imagination universe. My website, an clone of Etsy, sells a variety of goods, from handcrafted crafts to officially licensed goods. It provides everything you need, including wands, clothing, home decor, and even trendy fashion. Visit my website to learn more: [CraftySpace](https://craftyspace.onrender.com)
 
 
 ## This project is built with:
