@@ -19,23 +19,18 @@ def get_all_items_in_cart ():
 def add_to_cart():
     data = request.get_json()
     form = ShoppingCartForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         # Check if the item already exists in the cart
-        print(data)
-        item = InCartItem.query.filter(InCartItem.id == data["product_id"]).first()
+        item = InCartItem.query.filter_by(user_id=data['user_id'], product_id=data['product_id']).first()
 
         if item:
             # If the item already exists, increase the quantity
-            item.quantity += 1
+            item.quantity += int(data['quantity'])
         else:
             # If the item does not exist, create a new item
-            item = InCartItem(
-                user_id=data["user_id"],
-                product_id=data["product_id"],
-                quantity=data["quantity"],
-            )
+            item = InCartItem(user_id=data['user_id'], product_id=data['product_id'], quantity=int(data['quantity']))
             db.session.add(item)
 
         db.session.commit()
