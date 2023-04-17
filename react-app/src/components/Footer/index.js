@@ -12,7 +12,7 @@ function Footer() {
                     <a href="https://github.com/kutun0901/CraftySpace" target="_blank" rel="noreferrer">
                         <i className="contact_us_github_icon fa-brands fa-github" />
                     </a>
-                    <a href="https://www.linkedin.com/in/tuan-tran-quoc-163853117/" target="_blank" rel="noreferrer">
+                    <a href="https://www.linkedin.com/in/tuan-tran-163853117/" target="_blank" rel="noreferrer">
                         <i className="contact_us_linkedin_icon fa-brands fa-linkedin" />
                     </a>
                 </span>
