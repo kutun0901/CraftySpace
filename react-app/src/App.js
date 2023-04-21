@@ -12,6 +12,7 @@ import NewProduct from "./components/ProductDetails/NewProduct";
 import UpdateProduct from "./components/ProductDetails/UpdateProduct";
 import ShoppingCart from "./components/ShoppingCart";
 import Footer from "./components/Footer";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path="/products/:id">
             <ProductDetails />
+          </Route>
+          <Route path="/search/:keyword">
+            <Search />
           </Route>
           <Route path="*">
             <p style={{ paddingTop: "10px" }}>Page Not Found</p>
