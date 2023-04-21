@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSearchResultThunk } from '../../store/search';
+import { getSearchResultThunk, resetSearchResult } from '../../store/search';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
@@ -13,7 +13,8 @@ function Navigation({ isLoaded }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    dispatch(getSearchResultThunk(searchKeyword));
+    dispatch(resetSearchResult()); // Reset the search results state
+    dispatch(getSearchResultThunk(searchKeyword)); // Fetch new search results
     history.push(`/search/${searchKeyword}`);
   }
 
