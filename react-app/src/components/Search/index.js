@@ -1,27 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSearchResultThunk } from "../../store/search";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 function Search() {
-    // const dispatch = useDispatch();
     const resultsObj = useSelector(state => state.search);
-
+    const placeholderImage = 'https://papapita.com/file/2020/02/Image-Coming-Soon-Placeholder.jpg';
     const results = Object.values(resultsObj);
-
-    // useEffect(() => {
-    //     dispatch(getSearchResultThunk(keyword))
-    // }, [dispatch])
 
     return (
         <div>
-            <h3 className="shop-ours">Your search results</h3>
+            <h3 className="shop-ours">Your search results:</h3>
             <div className="products-container">
                 {results.map((product) => (
                     <div key={product.id} className="product">
                         <NavLink to={`/products/${product.id}`}>
                             <div className="image-container">
-                                <img src={product.images ? product.images[0] : null} alt={product.title} />
+                                <img
+                                    src={product.images ? product.images[0] : placeholderImage}
+                                    alt={product.title}
+                                    onError={(e) => {
+                                        e.target.src = placeholderImage;
+                                    }}
+                                />
                                 <p className="price">${product.price.toFixed(2)}</p>
                             </div>
                             <h4>{product.name}</h4>
