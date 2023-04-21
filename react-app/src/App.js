@@ -13,6 +13,7 @@ import UpdateProduct from "./components/ProductDetails/UpdateProduct";
 import ShoppingCart from "./components/ShoppingCart";
 import Footer from "./components/Footer";
 import Search from "./components/Search";
+import PageNotFound from "./components/404Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ function App() {
             <Search />
           </Route>
           <Route path="*">
-            <p style={{ paddingTop: "10px" }}>Page Not Found</p>
+            <PageNotFound />
           </Route>
         </Switch>
       )}
