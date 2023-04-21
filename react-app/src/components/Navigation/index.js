@@ -1,51 +1,57 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSearchResultThunk } from '../../store/search';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-	const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [searchKeyword, setSearchKeyword] = useState('');
 
-	const handleSearch = () => {
-		window.alert("Coming up feature")
-	}
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(getSearchResultThunk(searchKeyword));
+    history.push(`/search/${searchKeyword}`);
+  }
 
-	return (
-		<nav className='navigation-container'>
-			<NavLink exact to='/' className='navigation-logo'>
-				<i className="fa-solid fa-wand-sparkles"></i>
-				CraftySpace
-			</NavLink>
-			<div>
-				<form className='search-form'>
-					<input type='text' placeholder='Search' />
-					<button type='submit' onClick={handleSearch}>Go</button>
-				</form>
-			</div>
-			{isLoaded && (
-				<ul className='navigation-links'>
-					{sessionUser && (
-						<>
-							<li>
-								<NavLink exact to='/products/current' className='store'>
-									<i className="fa-solid fa-store"></i>
-								</NavLink>
-							</li>
-							<li>
-								<NavLink exact to='/cart' className='cart'>
-									<i className="fa-solid fa-cart-shopping"></i>
-								</NavLink>
-							</li>
-						</>
-					)}
-					<li>
-						<ProfileButton user={sessionUser} />
-					</li>
-				</ul>
-			)}
-		</nav>
-	)
+  return (
+    <nav className='navigation-container'>
+      <NavLink exact to='/' className='navigation-logo'>
+        <i className="fa-solid fa-wand-sparkles"></i>
+        CraftySpace
+      </NavLink>
+      <div>
+        <form className='search-form' onSubmit={handleSearch}>
+          <input type='text' placeholder='Search' onChange={(e) => setSearchKeyword(e.target.value)} />
+          <button type='submit'>Go</button>
+        </form>
+      </div>
+      {isLoaded && (
+        <ul className='navigation-links'>
+          {sessionUser && (
+            <>
+              <li>
+                <NavLink exact to='/products/current' className='store'>
+                  <i className="fa-solid fa-store"></i>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink exact to='/cart' className='cart'>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </NavLink>
+              </li>
+            </>
+          )}
+          <li>
+            <ProfileButton user={sessionUser} />
+          </li>
+        </ul>
+      )}
+    </nav>
+  )
 }
 
 export default Navigation;

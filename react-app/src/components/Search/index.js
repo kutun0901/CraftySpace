@@ -1,13 +1,17 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getSearchResultThunk } from "../../store/search";
+import { NavLink } from "react-router-dom";
 
-
-function Search(keyword) {
-    const dispatch = useDispatch();
+function Search() {
+    // const dispatch = useDispatch();
     const resultsObj = useSelector(state => state.search);
 
     const results = Object.values(resultsObj);
 
-
+    // useEffect(() => {
+    //     dispatch(getSearchResultThunk(keyword))
+    // }, [dispatch])
 
     return (
         <div>
