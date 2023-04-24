@@ -8,6 +8,7 @@ import './ProductDetails.css'
 import OpenModalButton from '../OpenModalButton'
 import DeleteReviewModal from "../Reviews/DeleteReviewModal";
 import PostReviewModal from "../Reviews/PostReviewModal";
+import Loading from "../Loading";
 
 
 function ProductDetails() {
