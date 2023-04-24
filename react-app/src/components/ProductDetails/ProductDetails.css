@@ -4,7 +4,7 @@
     justify-content: space-between;
     margin: 2rem auto;
     max-width: 1200px;
-    min-height: 990px;
+    min-height: calc(100vh - 95px);
   }
 
   .product-image-review {

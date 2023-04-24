@@ -38,7 +38,7 @@ function Search() {
 
     // Render product cards when there are search results
     return (
-        <div>
+        <div className="search-result">
             <h3 className="shop-ours">Your search results:</h3>
             <div className="products-container">
                 {results.map((product) => (
