@@ -7,7 +7,7 @@
   margin-top: 40px;
   padding-left: 20px;
   margin-bottom: 40px;
-  min-height: 930px;
+  min-height: calc(100vh - 95px);
 }
 
 .new-product-page .form-group {
