@@ -23,3 +23,7 @@
     margin-top: 0.5rem;
     font-size: 1rem;
   }
+
+.search-result{
+  min-height: calc(100vh - 95px);
+}
