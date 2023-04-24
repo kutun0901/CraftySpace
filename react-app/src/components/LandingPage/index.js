@@ -32,7 +32,7 @@ function LandingPage() {
 
 
     return (
-        <div>
+        <div className="landing-page-wrapper">
             {isLoaded ? (
             <><div className="header-container">
                     {sessionUser ? (
