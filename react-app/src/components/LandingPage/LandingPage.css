@@ -5,7 +5,7 @@ body {
 }
 
 .landing-page-wrapper {
-  min-height: cal(100vh - 95px);
+  min-height: calc(100vh - 95px);
 }
 
 .header-container {

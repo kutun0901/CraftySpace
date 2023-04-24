@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Loading from "../Loading";
 import noResults from "../../asset/-unsuccessful-state-feedback.jpg"
+import "./Search.css"
 
 function Search() {
     const resultsObj = useSelector(state => state.search);

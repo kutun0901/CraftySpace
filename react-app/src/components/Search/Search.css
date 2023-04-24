@@ -1,0 +1,25 @@
+.no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 2rem;
+    text-align: center;
+    min-height: calc(100vh - 95px);
+  }
+
+  .no-results img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .no-results h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .no-results p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
