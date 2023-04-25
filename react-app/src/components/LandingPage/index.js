@@ -22,7 +22,7 @@ function LandingPage() {
     useEffect(() => {
         dispatch(getAllProductsThunk())
         dispatch(getAllCategoriesThunk())
-        .then(() => setIsLoaded(true))
+            .then(() => setIsLoaded(true))
     }, [dispatch])
 
     const topRatedProducts = productsArr
@@ -34,7 +34,7 @@ function LandingPage() {
     return (
         <div className="landing-page-wrapper">
             {isLoaded ? (
-            <><div className="header-container">
+                <><div className="header-container">
                     {sessionUser ? (
                         <div className="welcome">
                             <h1>
@@ -62,18 +62,20 @@ function LandingPage() {
                         <div>
                             <h3 className="top-rated">Top rated products:</h3>
                         </div>
-                        {topRatedProducts.map((topProduct) => (
-                            <div key={topProduct.id} className="product">
-                                <NavLink to={`/products/${topProduct.id}`}>
-                                    <div className="image-container">
-                                        <img src={topProduct.images ? topProduct.images[0] : null} alt={topProduct.title} />
-                                        <p className="price">${topProduct.price.toFixed(2)}</p>
-                                    </div>
-                                    <h4>{topProduct.name}</h4>
-                                    <p><i className="fa-solid fa-star"></i> {topProduct.avgRating.toFixed(1)}</p>
-                                </NavLink>
-                            </div>
-                        ))}
+                        <div className="top-rated-wrapper">
+                            {topRatedProducts.map((topProduct) => (
+                                <div key={topProduct.id} className="product">
+                                    <NavLink to={`/products/${topProduct.id}`}>
+                                        <div className="image-container">
+                                            <img src={topProduct.images ? topProduct.images[0] : null} alt={topProduct.title} />
+                                            <p className="price">${topProduct.price.toFixed(2)}</p>
+                                        </div>
+                                        <h4>{topProduct.name}</h4>
+                                        <p><i className="fa-solid fa-star"></i> {topProduct.avgRating.toFixed(1)}</p>
+                                    </NavLink>
+                                </div>
+                            ))}
+                        </div>
                     </div><h3 className="shop-ours">Shop our products</h3><div className="products-container">
                         {productsArr.map((product) => (
                             <div key={product.id} className="product">
@@ -115,7 +117,7 @@ function LandingPage() {
                         <p><i className="fa-solid fa-seedling"></i> Etsy clone 2023</p>
                     </div></>
             ) : <Loading />
-        }
+            }
         </div>
     )
 }
