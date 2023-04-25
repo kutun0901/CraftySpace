@@ -24,7 +24,7 @@ def update_review(id):
     if form.validate_on_submit():
         review.rating = data["rating"]
         review.comment = data["comment"]
-        review.updated_at = datetime.utcnow()
+        review.updated_at = datetime.now(timezone.utc)
         db.session.commit()
         return {"id": review.product.id, "review":review.to_dict() }, 200
 
