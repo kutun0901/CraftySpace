@@ -68,7 +68,7 @@ function PostReviewModal({ productId, reviewId }) {
                     required
                     type="text"
                     className="comment-input"
-                    placeholder="Leave your review here..."
+                    placeholder="Leave your review here... (minimum 10 characters)"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 ></textarea>

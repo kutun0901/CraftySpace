@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { getAllCartItemsThunk, updateCartThunk, removeItemThunk } from '../../store/shoppingCartItems';
 import './ShoppingCart.css';
+import Loading from '../Loading';
+
 
 const ShoppingCart = () => {
 
@@ -10,9 +12,12 @@ const ShoppingCart = () => {
   const cartItems = useSelector(state => Object.values(state.cart));
   const sessionUser = useSelector(state => state.session.user)
   const cartItemsArr = Object.values(cartItems)
+  const [isLoaded, setIsLoaded] = useState(false)
+
 
   useEffect(() => {
-    dispatch(getAllCartItemsThunk());
+    dispatch(getAllCartItemsThunk())
+    .then(() => setIsLoaded(true))
   }, [dispatch]);
 
   if (!sessionUser) return <Redirect to='/' />
@@ -43,6 +48,8 @@ const ShoppingCart = () => {
 
 
   return (
+    <>
+    {isLoaded ? (
     <div className='shopping-cart-container'>
       <h2 className='shopping-cart-title'>Shopping cart</h2>
       {cartItems.length === 0 ? (
@@ -86,6 +93,8 @@ const ShoppingCart = () => {
         </div>
       </div>
     </div>
+    ) : <Loading />}
+    </>
   );
 };
 
