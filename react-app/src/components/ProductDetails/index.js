@@ -10,6 +10,7 @@ import DeleteReviewModal from "../Reviews/DeleteReviewModal";
 import PostReviewModal from "../Reviews/PostReviewModal";
 import Loading from "../Loading";
 import PageNotFound from "../404Page";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function ProductDetails() {
@@ -36,6 +37,10 @@ function ProductDetails() {
             .then(() => setIsLoaded(true))
     }, [dispatch, id]);
 
+    if (product.error) {
+        return <PageNotFound />;
+    }
+
     const handleAddToCart = async (e) => {
         e.preventDefault();
         if (!sessionUser) return window.alert('Log in required for purchasing this product');
@@ -60,9 +65,7 @@ function ProductDetails() {
         history.push('/cart');
     };
 
-    if (!product) {
-        return <PageNotFound />;
-    }
+
 
     return (
         <>
