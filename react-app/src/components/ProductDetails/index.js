@@ -10,7 +10,7 @@ import DeleteReviewModal from "../Reviews/DeleteReviewModal";
 import PostReviewModal from "../Reviews/PostReviewModal";
 import Loading from "../Loading";
 import PageNotFound from "../404Page";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import LoginFormModal from "../LoginFormModal"
 
 
 function ProductDetails() {
@@ -25,7 +25,6 @@ function ProductDetails() {
     const inCartItems = useSelector(state => state.cart)
     const reviews = useSelector(state => state.reviews[id]);
     const [isLoaded, setIsLoaded] = useState(false)
-
 
 
     const inCartItemsArr = Object.values(inCartItems)
@@ -43,7 +42,14 @@ function ProductDetails() {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-        if (!sessionUser) return window.alert('Log in required for purchasing this product');
+        if (!sessionUser) {
+            return (
+                <OpenModalButton
+                    modalComponent={<LoginFormModal />}
+                    buttonText="Login to Add to Cart"
+                />
+            );
+        }
 
         const inCartQuantity = inCartItemsArr.reduce((total, item) => {
             if (item.product_id === product.id) {
@@ -189,10 +195,13 @@ function ProductDetails() {
                         <p>{product.description}</p>
                         <p>Price: {product.price}</p>
                         <form onSubmit={handleAddToCart}>
-                            <button type="submit">Add to Cart</button>
+                            <button type="submit" onClick={handleAddToCart}>
+                                Add to Cart
+                            </button>
                         </form>
                     </div>
                 </div>
+
             ) : <Loading />}
         </>
     );
