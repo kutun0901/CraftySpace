@@ -194,11 +194,17 @@ function ProductDetails() {
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
                         <p>Price: {product.price}</p>
-                        <form onSubmit={handleAddToCart}>
-                            <button type="submit" onClick={handleAddToCart}>
-                                Add to Cart
-                            </button>
-                        </form>
+                        {sessionUser ? (
+                            <form onSubmit={handleAddToCart}>
+                                <button type="submit">Add to Cart</button>
+                            </form>
+                        ) : (
+                            <OpenModalButton
+                                className="login-form-button"
+                                modalComponent={<LoginFormModal />}
+                                buttonText="Login to Add to Cart"
+                            />
+                        )}
                     </div>
                 </div>
 
