@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { getAllCartItemsThunk, updateCartThunk, removeItemThunk } from '../../store/shoppingCartItems';
+import { getAllCartItemsThunk, updateCartThunk, removeItemThunk, clearCartItemsThunk } from '../../store/shoppingCartItems';
 import './ShoppingCart.css';
 import Loading from '../Loading';
-import { resetCart } from '../../store/shoppingCartItems';
 
 
 const ShoppingCart = () => {
@@ -45,8 +44,10 @@ const ShoppingCart = () => {
   }
 
   const handleOrder = () => {
-    dispatch(resetCart());
-    history.push('/order/complete');
+    dispatch(clearCartItemsThunk())
+    .then(() => {
+      history.push('/order/complete');
+    })
 }
 
 

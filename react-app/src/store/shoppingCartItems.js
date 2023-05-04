@@ -3,6 +3,8 @@ const ADD_ITEM_TO_CART = 'products/ADD_ITEM_TO_CART'
 const UPDATE_CART = 'products/UPDATE_CART'
 const REMOVE_ITEM = 'products/REMOVE_ITEM'
 const RESET_CART = 'products/RESET_CART'
+const CLEAR_CART = 'products/CLEAR_CART'
+
 
 //action creator
 
@@ -33,6 +35,10 @@ export const removeItem = itemId => ({
 export const resetCart = () => ({
     type: RESET_CART
 })
+
+export const clearCartItems = () => ({
+    type: CLEAR_CART,
+});
 
 
 //thunks
@@ -110,6 +116,19 @@ export const removeItemThunk = itemId => async (dispatch) => {
     }
 }
 
+export const clearCartItemsThunk = () => async (dispatch) => {
+    const res = await fetch('/api/incart/current', {
+        method: 'DELETE',
+    });
+
+    if (res.ok) {
+        dispatch(clearCartItems());
+    } else {
+        const errors = await res.json();
+        console.error(errors);
+    }
+};
+
 
 //reducer
 
@@ -118,7 +137,7 @@ const initialState = {}
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_CART_ITEMS: {
-            const newState = {...state}
+            const newState = { ...state }
             for (const item of action.payload) {
                 newState[item.id] = item
             }
@@ -132,13 +151,13 @@ export default function reducer(state = initialState, action) {
             // console.log(existingItem);
 
             if (existingItem) {
-              existingItem.quantity += Number(newItem.quantity);
+                existingItem.quantity += Number(newItem.quantity);
             } else {
-              newState[newItem.id] = { ...newItem, quantity: Number(newItem.quantity) };
+                newState[newItem.id] = { ...newItem, quantity: Number(newItem.quantity) };
             }
 
             return newState;
-          }
+        }
         case UPDATE_CART: {
             const newState = { ...state }
             newState[action.payload.id].quantity = action.payload.quantity
@@ -148,6 +167,9 @@ export default function reducer(state = initialState, action) {
             const newState = { ...state }
             delete newState[action.payload]
             return newState
+        }
+        case CLEAR_CART: {
+            return initialState;
         }
         case RESET_CART: {
             return initialState
