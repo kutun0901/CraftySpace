@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { getAllCartItemsThunk, updateCartThunk, removeItemThunk } from '../../store/shoppingCartItems';
 import './ShoppingCart.css';
 import Loading from '../Loading';
+import { resetCart } from '../../store/shoppingCartItems';
 
 
 const ShoppingCart = () => {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const cartItems = useSelector(state => Object.values(state.cart));
   const sessionUser = useSelector(state => state.session.user)
@@ -43,7 +45,8 @@ const ShoppingCart = () => {
   }
 
   const handleOrder = () => {
-    return window.alert("upcoming feature")
+    dispatch(resetCart());
+    history.push('/complete-order');
 }
 
 

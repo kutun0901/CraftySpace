@@ -30,7 +30,7 @@ export const removeItem = itemId => ({
     payload: itemId
 })
 
-export const reset = () => ({
+export const resetCart = () => ({
     type: RESET
 })
 

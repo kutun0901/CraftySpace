@@ -14,6 +14,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import Footer from "./components/Footer";
 import Search from "./components/Search";
 import PageNotFound from "./components/404Page";
+import CompleteOrder from "./components/ShoppingCart/CompleteOrder";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route path="/search/:keyword">
             <Search />
+          </Route>
+          <Route path="/order/complete">
+            <CompleteOrder />
           </Route>
           <Route path="*">
             <PageNotFound />
