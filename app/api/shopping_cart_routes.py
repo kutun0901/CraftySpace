@@ -61,3 +61,12 @@ def remove_item_in_cart(id):
     db.session.delete(item)
     db.session.commit()
     return {"message": "Successfully removed"}
+
+@shopping_cart_routes.route('/current', methods=["DELETE"])
+@login_required
+def clear_cart_items():
+    items = InCartItem.query.filter_by(user_id=current_user.id).all()
+    for item in items:
+        db.session.delete(item)
+    db.session.commit()
+    return {"message": "Cart items deleted successfully."}
