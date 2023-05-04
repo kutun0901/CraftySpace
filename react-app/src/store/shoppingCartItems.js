@@ -2,7 +2,7 @@ const GET_ALL_CART_ITEMS = 'products/GET_ALL_CART_ITEMS'
 const ADD_ITEM_TO_CART = 'products/ADD_ITEM_TO_CART'
 const UPDATE_CART = 'products/UPDATE_CART'
 const REMOVE_ITEM = 'products/REMOVE_ITEM'
-const RESET = 'products/RESET'
+const RESET_CART = 'products/RESET_CART'
 
 //action creator
 
@@ -31,7 +31,7 @@ export const removeItem = itemId => ({
 })
 
 export const resetCart = () => ({
-    type: RESET
+    type: RESET_CART
 })
 
 
@@ -149,7 +149,7 @@ export default function reducer(state = initialState, action) {
             delete newState[action.payload]
             return newState
         }
-        case RESET: {
+        case RESET_CART: {
             return initialState
         }
         default:
