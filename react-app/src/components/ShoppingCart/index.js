@@ -46,7 +46,7 @@ const ShoppingCart = () => {
 
   const handleOrder = () => {
     dispatch(resetCart());
-    history.push('/complete-order');
+    history.push('/order/complete');
 }
 
 
