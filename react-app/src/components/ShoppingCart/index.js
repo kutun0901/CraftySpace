@@ -44,11 +44,15 @@ const ShoppingCart = () => {
   }
 
   const handleOrder = () => {
-    dispatch(clearCartItemsThunk())
-    .then(() => {
-      history.push('/order/complete');
-    })
-}
+    if (cartItems.length) {
+      dispatch(clearCartItemsThunk())
+        .then(() => {
+          history.push('/order/complete');
+        })
+    } else {
+      window.alert("Your shopping cart is empty. Please add items to your cart before placing an order.")
+    }
+  }
 
 
   return (
