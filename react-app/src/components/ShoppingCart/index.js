@@ -12,7 +12,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => Object.values(state.cart));
   const sessionUser = useSelector(state => state.session.user)
-  const cartItemsArr = Object.values(cartItems)
+  // const cartItemsArr = Object.values(cartItems)
   const [isLoaded, setIsLoaded] = useState(false)
 
 
@@ -38,7 +38,7 @@ const ShoppingCart = () => {
   };
 
   let total = 0;
-  for (const item of cartItemsArr) {
+  for (const item of cartItems) {
     const singleItemAmount = item.quantity * item.product.price
     total += singleItemAmount
   }
@@ -63,7 +63,7 @@ const ShoppingCart = () => {
       <div className='cart-items-wrapper'>
         <div className='cart-item-container'>
           <ul>
-            {cartItemsArr.map(item => (
+            {cartItems.map(item => (
               <li key={item.id} className='cart-item'>
                 <NavLink to={`/products/${item.product_id}`}>
                   <div className="cart-item-details">
