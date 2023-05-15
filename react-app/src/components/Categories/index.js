@@ -2,28 +2,32 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import Loading from "../Loading";
+import PageNotFound from "../404Page";
 
 
 function CategoryProducts() {
     const { id } = useParams();
     const allProducts = Object.values(useSelector(state => state.products.allProducts));
-    // console.log("==========>", allProducts)
+    const allCategories = Object.values(useSelector(state => state.categories))
     const [isLoaded, setIsLoaded] = useState(false);
 
     const placeholderImage = 'https://papapita.com/file/2020/02/Image-Coming-Soon-Placeholder.jpg';
 
     const categoryId = parseInt(id)
     const categoryProducts = allProducts.filter(product => product.categoryId === categoryId);
-    // console.log(categoryProducts);
+    const categoryName = allCategories.find(category => category.id === categoryId)?.name;
+
     useEffect(() => {
       setIsLoaded(true);
     }, [categoryProducts]);
+
+    if (!categoryProducts) return <PageNotFound />
 
     return (
         <>
         {isLoaded ? (
             <div className="search-result">
-            <h3 className="shop-ours">Your search results:</h3>
+            <h3 className="shop-ours">Category: {categoryName || 'No category found'}</h3>
             <div className="products-container">
                 {categoryProducts.map((product) => (
                     <div key={product.id} className="product">
