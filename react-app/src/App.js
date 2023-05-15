@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import Search from "./components/Search";
 import PageNotFound from "./components/404Page";
 import CompleteOrder from "./components/ShoppingCart/CompleteOrder";
+import CategoryProducts from "./components/Categories";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route path="/order/complete">
             <CompleteOrder />
+          </Route>
+          <Route path="/categories/:id">
+            <CategoryProducts />
           </Route>
           <Route path="*">
             <PageNotFound />

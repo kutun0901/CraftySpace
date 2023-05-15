@@ -53,7 +53,7 @@ function LandingPage() {
                 </div><div className="categories-container">
                         {categoriesArr.map((category) => (
                             <div key={category.id} className="category">
-                                <NavLink to="/">
+                                <NavLink to={`/categories/${category.id}`}>
                                     <h3>{category.name}</h3>
                                 </NavLink>
                             </div>
